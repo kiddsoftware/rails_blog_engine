@@ -3,6 +3,9 @@ ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../dummy/config/environment", __FILE__)
 require 'rspec/rails'
 
+# For some reason, this isn't loading correctly when Shoulda launches.
+require 'shoulda/matchers/integrations/rspec'
+
 # The root directory of our engine, and not our dummy application.
 ENGINE_RAILS_ROOT=File.join(File.dirname(__FILE__), '../')
 
