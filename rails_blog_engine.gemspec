@@ -31,5 +31,6 @@ Gem::Specification.new do |s|
 
   # Development-only gems.
   s.add_development_dependency "sqlite3"
+  s.add_development_dependency "shoulda"
   s.add_development_dependency "steak"
 end
