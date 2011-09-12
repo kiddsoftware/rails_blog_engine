@@ -31,6 +31,11 @@ Gem::Specification.new do |s|
 
   # Development-only gems.
   s.add_development_dependency "sqlite3"
-  s.add_development_dependency "shoulda"
   s.add_development_dependency "steak"
+  s.add_development_dependency "shoulda"
+  s.add_development_dependency "machinist", ">= 2.0.0.beta2"
+
+  # Auto-running our unit tests when things change.
+  s.add_development_dependency "guard-rspec"
+  s.add_development_dependency "rb-inotify"
 end
