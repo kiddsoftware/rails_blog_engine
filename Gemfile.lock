@@ -80,6 +80,7 @@ GEM
       thor (~> 0.14)
     json_pure (1.5.4)
       spruz (~> 0.2.8)
+    libnotify (0.5.7)
     machinist (2.0.0.beta2)
     mail (2.3.0)
       i18n (>= 0.4.0)
@@ -168,6 +169,7 @@ PLATFORMS
 
 DEPENDENCIES
   guard-rspec
+  libnotify
   machinist (>= 2.0.0.beta2)
   rails_blog_engine!
   rb-inotify

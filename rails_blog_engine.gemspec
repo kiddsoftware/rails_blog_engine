@@ -38,4 +38,5 @@ Gem::Specification.new do |s|
   # Auto-running our unit tests when things change.
   s.add_development_dependency "guard-rspec"
   s.add_development_dependency "rb-inotify"
+  s.add_development_dependency "libnotify"
 end
