@@ -1,9 +1,6 @@
 require 'machinist/active_record'
 
-# Add your blueprints here.
-#
-# e.g.
-#   Post.blueprint do
-#     title { "Post #{sn}" }
-#     body  { "Lorem ipsum..." }
-#   end
+RailsBlogEngine::Post.blueprint do
+  title { "Post #{sn}" }
+  body { "Body text" }
+end
