@@ -4,6 +4,7 @@ require "jquery-rails"
 require "haml"
 
 require "rails_blog_engine/engine"
+require "rails_blog_engine/ability"
 
 module RailsBlogEngine
 end
