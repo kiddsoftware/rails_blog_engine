@@ -32,4 +32,7 @@ desc "Verify against specifications"
 RSpec::Core::RakeTask.new do |t|
 end
 
+# Copy database tables from development to test.
+task :spec => 'app:db:test:load'
+
 task :default => :spec
