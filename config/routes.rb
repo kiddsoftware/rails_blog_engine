@@ -1,4 +1,4 @@
 RailsBlogEngine::Engine.routes.draw do
   root :to => 'posts#index'
-  #resources :posts
+  resources :posts, :except => [:index, :delete]
 end

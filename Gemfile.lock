@@ -15,6 +15,7 @@ PATH
       jquery-rails (~> 1.0.14)
       rails (~> 3.1.0)
       sass-rails (~> 3.1.0)
+      simple_form (~> 1.4.2)
 
 GEM
   remote: http://rubygems.org/
@@ -49,7 +50,7 @@ GEM
     activesupport (3.1.0)
       multi_json (~> 1.0)
     arel (2.2.1)
-    bcrypt-ruby (3.0.0)
+    bcrypt-ruby (3.0.1)
     builder (3.0.0)
     cancan (1.6.5)
     capybara (1.1.1)
@@ -149,6 +150,9 @@ GEM
       json_pure
       rubyzip
     shoulda-matchers (1.0.0.beta3)
+    simple_form (1.4.2)
+      actionpack (~> 3.0)
+      activemodel (~> 3.0)
     sprockets (2.0.0)
       hike (~> 1.2)
       rack (~> 1.0)

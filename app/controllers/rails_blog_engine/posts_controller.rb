@@ -4,5 +4,20 @@ module RailsBlogEngine
 
     def index
     end
+
+    def new
+    end
+
+    def create
+      if @post.save
+        redirect_to(post_path(@post),
+                    :notice => "Post was successfully created.")
+      else
+        render :action => :new
+      end
+    end
+
+    def show
+    end
   end
 end

@@ -7,5 +7,8 @@ end
 
 # Devise User model for our dummy application.
 User.blueprint do
+  email { "user#{sn}@example.com" }
+  password { "password" }
+  password_confirmation { "password" }
 end
 

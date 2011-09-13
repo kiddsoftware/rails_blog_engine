@@ -29,6 +29,9 @@ Gem::Specification.new do |s|
   s.add_dependency "devise", "~> 1.4.5"
   s.add_dependency "cancan", "~> 1.6.5"
 
+  # Other useful libraries.
+  s.add_dependency "simple_form", "~> 1.4.2"
+
   # Development-only gems.
   s.add_development_dependency "sqlite3"
   s.add_development_dependency "steak"
