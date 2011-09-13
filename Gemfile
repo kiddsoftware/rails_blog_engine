@@ -12,3 +12,10 @@ gemspec
 
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
+
+group :development do
+  # We need a version which doesn't create objects in separate threads,
+  # cache them, or do anything else that breaks database-cleaning
+  # transactions in Steak.
+  gem 'machinist', :git => 'https://github.com/notahat/machinist.git'
+end
