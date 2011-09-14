@@ -30,7 +30,7 @@ module RailsBlogEngine
       date = post.published_at.utc
       local_path = sprintf('%04d/%02d/%02d/%s', date.year, date.month,
                            date.day, post.permalink)
-      "#{root_path}/#{local_path}"
+      root_path + local_path
     end
 
     def load_by_permalink
