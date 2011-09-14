@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe RailsBlogEngine::Filters do
-  include RailsBlogEngine
 
   # A sample filter.
   class HelloFilter < RailsBlogEngine::Filters::Base
@@ -17,14 +16,14 @@ describe RailsBlogEngine::Filters do
 
   describe ".find" do
     it "returns the filter registered for a name" do
-      Filters.find(:hello).should be_kind_of(HelloFilter)
+      RailsBlogEngine::Filters.find(:hello).should be_kind_of(HelloFilter)
     end
   end
 
   describe ".apply_all_to" do
     %w(filter macro typo).each do |tag|
       it "applies registered filters to empty '#{tag}' tags" do
-        Filters.apply_all_to(<<"END_OF_INPUT").should == <<END_OF_OUTPUT
+        RailsBlogEngine::Filters.apply_all_to(<<"END_OF_INPUT").should == <<END_OF_OUTPUT
 <#{tag}:hello/>
 <#{tag}:hello class="example" />
 END_OF_INPUT
@@ -34,7 +33,7 @@ END_OF_OUTPUT
       end
 
       it "applies registered filters to '#{tag}' tags with content" do
-        Filters.apply_all_to(<<"END_OF_INPUT").should == <<END_OF_OUTPUT
+        RailsBlogEngine::Filters.apply_all_to(<<"END_OF_INPUT").should == <<END_OF_OUTPUT
 <#{tag}:hello>Judy</#{tag}:hello>
 <#{tag}:hello class='example' extra="" >Mike</#{tag}:hello>
 END_OF_INPUT
@@ -45,7 +44,7 @@ END_OF_OUTPUT
     end
 
     it "reports errors inline" do
-        Filters.apply_all_to(<<END_OF_INPUT).should == <<END_OF_OUTPUT
+        RailsBlogEngine::Filters.apply_all_to(<<END_OF_INPUT).should == <<END_OF_OUTPUT
 <filter:invalid/>
 <filter:hello class= >Mike</filter:hello>
 END_OF_INPUT

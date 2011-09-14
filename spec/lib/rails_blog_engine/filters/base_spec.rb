@@ -1,12 +1,12 @@
 require 'spec_helper'
 
 describe RailsBlogEngine::Filters::Base do
-  include RailsBlogEngine
+  let(:filter) { RailsBlogEngine::Filters::Base.new }
 
   describe "#process" do
     it "raises an error if not overridden" do
       lambda do
-        Filters::Base.new.process("text", {})
+        filter.process("text", {})
       end.should raise_error(/override/)
     end
   end

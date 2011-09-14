@@ -1,10 +1,8 @@
 require 'spec_helper'
 
 describe RailsBlogEngine::Post do
-  include RailsBlogEngine
-
   describe "validations" do
-    before { Post.make! }
+    before { RailsBlogEngine::Post.make! }
 
     it { should allow_value("Title").for(:title) }
     it { should_not allow_value("").for(:title) }
@@ -26,7 +24,7 @@ describe RailsBlogEngine::Post do
   end
 
   describe "state machine" do
-    let(:post) { Post.make }
+    let(:post) { RailsBlogEngine::Post.make }
 
     it "begins as unpublished" do
       post.should be_unpublished
@@ -40,10 +38,10 @@ describe RailsBlogEngine::Post do
 
   describe "published_at" do
     it "is set automatically when post is first published" do
-      first_publication = Time.new(1980, 1, 1)
-      second_publication = Time.new(1980, 1, 2)
+      first_publication = Time.utc(1980, 1, 1)
+      second_publication = Time.utc(1980, 1, 2)
 
-      post = Post.make
+      post = RailsBlogEngine::Post.make
       post.published_at.should be_nil
 
       Time.stub(:now) { first_publication }
@@ -59,24 +57,25 @@ describe RailsBlogEngine::Post do
   describe "#author_byline" do
     it "is set from the #author method before save" do
       author = User.make(:email => 'jane@example.com')
-      Post.make!(:author => author).author_byline.should == 'jane'
+      RailsBlogEngine::Post.make!(:author => author).author_byline.
+        should == 'jane'
     end
   end
 
   describe ".author_byline" do
     it "returns .byline if present" do
       author = mock('author', :byline => 'Jane Smith')
-      Post.author_byline(author).should == 'Jane Smith'
+      RailsBlogEngine::Post.author_byline(author).should == 'Jane Smith'
     end
 
     it "returns .email without domain if present" do
       author = mock('author', :email => 'jane@example.com')
-      Post.author_byline(author).should == 'jane'
+      RailsBlogEngine::Post.author_byline(author).should == 'jane'
     end
 
     it "returns 'unknown' otherwise" do
       author = mock('author')
-      Post.author_byline(author).should == 'unknown'
+      RailsBlogEngine::Post.author_byline(author).should == 'unknown'
     end
   end
 end
