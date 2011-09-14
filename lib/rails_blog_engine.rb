@@ -8,6 +8,7 @@ require "simple_form"
 
 require "rails_blog_engine/engine"
 require "rails_blog_engine/ability"
+require "rails_blog_engine/filter"
 
 module RailsBlogEngine
 end
