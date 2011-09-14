@@ -11,14 +11,22 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110913113004) do
+ActiveRecord::Schema.define(:version => 20110913190319) do
 
   create_table "rails_blog_engine_posts", :force => true do |t|
     t.string   "title"
     t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "state"
+    t.datetime "published_at"
+    t.string   "permalink"
+    t.integer  "author_id"
+    t.string   "author_type"
+    t.string   "author_byline"
   end
+
+  add_index "rails_blog_engine_posts", ["permalink"], :name => "index_rails_blog_engine_posts_on_permalink"
 
   create_table "users", :force => true do |t|
     t.string   "email",                                 :default => "", :null => false

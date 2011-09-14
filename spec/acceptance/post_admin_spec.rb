@@ -17,6 +17,7 @@ feature 'Posts admin', %q{
   scenario 'Adding a new post' do
     visit '/blog/posts/new'
     fill_in 'Title', :with => 'Test Post'
+    fill_in 'Permalink', :with => 'test-post'
     fill_in 'Body', :with => 'My post'
     click_button 'Create Post'
     page.should have_content("Test Post")

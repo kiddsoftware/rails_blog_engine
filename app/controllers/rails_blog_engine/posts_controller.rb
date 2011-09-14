@@ -9,6 +9,7 @@ module RailsBlogEngine
     end
 
     def create
+      @post.author = current_user
       if @post.save
         redirect_to(post_path(@post),
                     :notice => "Post was successfully created.")
