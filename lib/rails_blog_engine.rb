@@ -3,6 +3,7 @@
 require "state_machine"
 require "jquery-rails"
 require "haml"
+require "rdiscount"
 require "simple_form"
 
 require "rails_blog_engine/engine"

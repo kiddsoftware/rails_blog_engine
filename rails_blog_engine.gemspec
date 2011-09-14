@@ -32,6 +32,7 @@ Gem::Specification.new do |s|
   # Other useful libraries.
   s.add_dependency "simple_form", "~> 1.4.2"
   s.add_dependency "state_machine", "~> 1.0.0"
+  s.add_dependency "rdiscount", "~> 1.6.8"
 
   # Development-only gems.
   s.add_development_dependency "sqlite3"

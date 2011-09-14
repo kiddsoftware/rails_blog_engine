@@ -8,7 +8,7 @@ feature 'Posts', %q{
 
   background do
     published_at = Time.utc(2011, 01, 02, 03)
-    RailsBlogEngine::Post.make!(:title => "Test Post", :body => "Body",
+    RailsBlogEngine::Post.make!(:title => "Test Post", :body => "_Body_ ",
                                 :state => 'published',
                                 :published_at => published_at,
                                 :permalink => 'test')
@@ -17,12 +17,12 @@ feature 'Posts', %q{
   scenario 'Viewing the index' do
     visit '/blog'
     page.should have_content("Test Post")
-    page.should have_content("Body")
+    within('em') { page.should have_content("Body") }
   end
 
   scenario 'Viewing a post' do
     visit '/blog/2011/01/02/test'
     page.should have_content("Test Post")
-    page.should have_content("Body")
+    within('em') { page.should have_content("Body") }
   end
 end
