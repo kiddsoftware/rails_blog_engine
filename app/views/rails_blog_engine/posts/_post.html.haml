@@ -1,3 +1,7 @@
 .post
   %h1= post.title
+  %p
+    Posted 
+    = distance_of_time_in_words_to_now(post.published_at)
+    ago
   %p= markdown(post.body)
