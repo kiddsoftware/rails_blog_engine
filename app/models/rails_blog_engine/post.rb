@@ -11,6 +11,9 @@ module RailsBlogEngine
 
     attr_accessible :title, :body, :permalink, :author
 
+    # Temporarily accessible.
+    attr_accessible :published_at
+
     # We use a state machine to represent our publication state.  This is
     # mostly because I visualize a UI with a great big "Publish" button,
     # and not a "Published" checkbox in a form.
