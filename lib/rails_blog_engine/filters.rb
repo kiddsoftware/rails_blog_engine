@@ -1,5 +1,3 @@
-require 'rails_blog_engine/filters/base'
-
 module RailsBlogEngine::Filters
 
   # :nodoc: All registered filters.
@@ -50,3 +48,6 @@ module RailsBlogEngine::Filters
     args
   end
 end
+
+require 'rails_blog_engine/filters/base'
+require 'rails_blog_engine/filters/code'
