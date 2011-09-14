@@ -37,4 +37,28 @@ describe RailsBlogEngine::Post do
       2.times { post.unpublish!; post.should be_unpublished }
     end
   end
+
+  describe "#author_byline" do
+    it "is set from the #author method before save" do
+      author = User.make(:email => 'jane@example.com')
+      Post.make!(:author => author).author_byline.should == 'jane'
+    end
+  end
+
+  describe ".author_byline" do
+    it "returns .byline if present" do
+      author = mock('author', :byline => 'Jane Smith')
+      Post.author_byline(author).should == 'Jane Smith'
+    end
+
+    it "returns .email without domain if present" do
+      author = mock('author', :email => 'jane@example.com')
+      Post.author_byline(author).should == 'jane'
+    end
+
+    it "returns 'unknown' otherwise" do
+      author = mock('author')
+      Post.author_byline(author).should == 'unknown'
+    end
+  end
 end

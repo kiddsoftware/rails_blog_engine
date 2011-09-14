@@ -8,6 +8,7 @@ module RailsBlogEngine
               :inclusion => { :in => %w(unpublished published) })
     validates :permalink, :presence => true, :uniqueness => true
     validates :author, :presence => true
+    validates :author_byline, :presence => true
 
     attr_accessible :title, :body, :permalink, :author
 
@@ -31,6 +32,33 @@ module RailsBlogEngine
 
       event :unpublish do
         transition any => :unpublished
+      end
+    end
+
+    before_validation :record_author_byline
+
+    protected
+
+    # Since the byline is computed from a polymorphic author association in
+    # a complicated fashion, we want to cache it in this object where it's
+    # available all the time.
+    def record_author_byline
+      byline = self.class.author_byline(author)
+      self.author_byline = byline unless self.author_byline == byline
+    end
+
+    class << self
+      # Try to generate a reasonable byline for an author.  We use a
+      # +author.byline+ method if present, and default to +author.email+
+      # stripped of its domain.
+      def author_byline(author)
+        byline = author.try(:byline)
+        return byline unless byline.nil?
+        email = author.try(:email)
+        unless email.nil?
+          return email.sub(/@.*\z/, '')
+        end
+        'unknown'
       end
     end
   end

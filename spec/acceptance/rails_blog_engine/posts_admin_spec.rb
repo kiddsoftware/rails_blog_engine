@@ -7,7 +7,7 @@ feature 'Posts admin', %q{
 } do
 
   background do
-    @user = User.make!
+    @user = User.make!(:email => 'sue@example.com')
     visit '/users/sign_in'
     fill_in 'Email', :with => @user.email
     fill_in 'Password', :with => @user.password
@@ -21,6 +21,7 @@ feature 'Posts admin', %q{
     fill_in 'Body', :with => 'My post'
     click_button 'Create Post'
     page.should have_content("Test Post")
+    page.should have_content("by sue")
     page.should have_content("My post")
   end
 end
