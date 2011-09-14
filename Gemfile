@@ -18,4 +18,7 @@ group :development do
   # cache them, or do anything else that breaks database-cleaning
   # transactions in Steak.
   gem 'machinist', :git => 'https://github.com/notahat/machinist.git'
+
+  # This is an optional runtime depedency.
+  gem 'pygments', :git => 'https://github.com/nathany/pygments-gem.git'
 end

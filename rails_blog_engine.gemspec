@@ -38,7 +38,8 @@ Gem::Specification.new do |s|
   s.add_development_dependency "sqlite3"
   s.add_development_dependency "steak"
   s.add_development_dependency "shoulda-matchers"
-  #s.add_development_dependency "machinist" (see Gemspec)
+  #s.add_development_dependency "machinist" (see Gemfile)
+  #s.add_development_dependency "pygments" (see Gemfile)
 
   # Auto-running our unit tests when things change.
   s.add_development_dependency "guard-rspec"
