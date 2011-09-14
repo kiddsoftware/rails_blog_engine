@@ -9,11 +9,9 @@ module RailsBlogEngine
     validates :permalink, :presence => true, :uniqueness => true
     validates :author, :presence => true
     validates :author_byline, :presence => true
+    validates :published_at, :presence => true, :if => :published?
 
     attr_accessible :title, :body, :permalink, :author
-
-    # Temporarily accessible.
-    attr_accessible :published_at
 
     # We use a state machine to represent our publication state.  This is
     # mostly because I visualize a UI with a great big "Publish" button,
@@ -32,6 +30,10 @@ module RailsBlogEngine
 
       event :unpublish do
         transition any => :unpublished
+      end
+
+      before_transition any => :published do |post, transition|
+        post.published_at ||= Time.now
       end
     end
 

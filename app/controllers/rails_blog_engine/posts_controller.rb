@@ -13,6 +13,7 @@ module RailsBlogEngine
 
     def create
       @post.author = current_user
+      @post.publish
       if @post.save
         redirect_to(post_permalink_path(@post),
                     :notice => "Post was successfully created.")

@@ -38,6 +38,24 @@ describe RailsBlogEngine::Post do
     end
   end
 
+  describe "published_at" do
+    it "is set automatically when post is first published" do
+      first_publication = Time.new(1980, 1, 1)
+      second_publication = Time.new(1980, 1, 2)
+
+      post = Post.make
+      post.published_at.should be_nil
+
+      Time.stub(:now) { first_publication }
+      post.publish
+      post.published_at.should == first_publication
+
+      Time.stub(:now) { second_publication }
+      post.publish
+      post.published_at.should == first_publication
+    end
+  end
+
   describe "#author_byline" do
     it "is set from the #author method before save" do
       author = User.make(:email => 'jane@example.com')
