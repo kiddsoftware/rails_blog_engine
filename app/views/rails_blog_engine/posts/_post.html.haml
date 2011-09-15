@@ -1,8 +1,8 @@
 .post
   %h1= post.title
   %p
-    Posted by
-    = post.author_byline
+    Posted
     = distance_of_time_in_words_to_now(post.published_at)
-    ago
+    ago by
+    = post.author_byline
   %p~ markdown(post.body)
