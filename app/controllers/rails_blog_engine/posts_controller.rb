@@ -6,6 +6,10 @@ module RailsBlogEngine
     skip_load_resource :only => :show
 
     def index
+      respond_to do |format|
+        format.html
+        format.atom
+      end
     end
 
     def new

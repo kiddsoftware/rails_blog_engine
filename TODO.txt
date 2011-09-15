@@ -6,6 +6,7 @@ Needed for use as a basic blog
   Basic CSS
   Recent articles list
   Pagination
+  Comments
 
 Needed for use as a product or company blog
 
