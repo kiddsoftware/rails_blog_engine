@@ -1,7 +1,7 @@
 Needed for use as a basic blog
 
 / Editing articles
-  Admin-only UI links
+/ Admin-only UI links
   RSS feed
   Basic CSS
   Recent articles list
@@ -14,7 +14,7 @@ Needed for use as a product or company blog
     Auto-save
     Publish / Unpublish button
   Spam filtering for comments
-  SEO standards
+  SEO best practices
 
 Needed for 3rd-party use
 

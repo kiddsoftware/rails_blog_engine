@@ -77,6 +77,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.1.2)
+    database_cleaner (0.6.7)
     devise (1.4.5)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.0.3)
@@ -192,6 +193,7 @@ PLATFORMS
 
 DEPENDENCIES
   capybara-webkit (~> 0.6.1)
+  database_cleaner
   guard-rspec
   launchy
   libnotify
