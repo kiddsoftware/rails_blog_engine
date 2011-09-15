@@ -16,11 +16,11 @@ module RailsBlogEngine::Filters
 
   # Apply all registered filters to the specified text.
   def self.apply_all_to(text)
-    text.gsub(/<(filter|macro|typo):([_a-zA-z0-9]+)([^>]*)\/>/) do
+    text.gsub(/<(filter|macro|typo):([_a-zA-z0-9]+)([^>]*)\/>/m) do
       trap_filter_errors do
         find($2.to_sym).process(nil, parse_arguments($3))
       end
-    end.gsub(/<(filter|macro|typo):([_a-zA-z0-9]+)([^>]*)>(.*?)<\/\1:\2>/) do
+    end.gsub(/<(filter|macro|typo):([_a-zA-z0-9]+)([^>]*)>(.*?)<\/\1:\2>/m) do
       trap_filter_errors do
         find($2.to_sym).process($4, parse_arguments($3))
       end

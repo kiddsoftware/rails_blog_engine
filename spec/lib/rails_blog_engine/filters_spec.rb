@@ -35,10 +35,12 @@ END_OF_OUTPUT
       it "applies registered filters to '#{tag}' tags with content" do
         RailsBlogEngine::Filters.apply_all_to(<<"END_OF_INPUT").should == <<END_OF_OUTPUT
 <#{tag}:hello>Judy</#{tag}:hello>
-<#{tag}:hello class='example' extra="" >Mike</#{tag}:hello>
+<#{tag}:hello class='example' extra="" >Mike
+Smith</#{tag}:hello>
 END_OF_INPUT
 <p>Hello, Judy!</p>
-<p class="example">Hello, Mike!</p>
+<p class="example">Hello, Mike
+Smith!</p>
 END_OF_OUTPUT
       end
     end
