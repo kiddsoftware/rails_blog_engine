@@ -1,0 +1,28 @@
+Needed for use as a basic blog
+
+  Editing articles
+  RSS feed
+  Basic CSS
+  Recent articles list
+  Pagination
+
+Needed for use as a product or company blog
+
+  Caching
+  Editor polish
+    Auto-save
+    Publish / Unpublish button
+  Spam filtering for comments
+  SEO standards
+
+Needed for 3rd-party use
+
+  Generators
+    rails_blog_engine:install
+    rails_blog_engine:filter
+    rails_blog_engine:templates
+  Documentation
+
+Needed for 1.0
+
+  
