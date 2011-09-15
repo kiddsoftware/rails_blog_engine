@@ -7,6 +7,11 @@ RailsBlogEngine::Post.blueprint do
   author { User.make }
 end
 
+RailsBlogEngine::Post.blueprint(:published) do
+  state { "published" }
+  published_at { Time.now }
+end
+
 # Devise User model for our dummy application.
 User.blueprint do
   email { "user#{sn}@example.com" }

@@ -25,6 +25,19 @@ module RailsBlogEngine
     def show
     end
 
+    def edit
+    end
+
+    def update
+      @post.update_attributes(params[:post])
+      if @post.save
+        redirect_to(post_permalink_path(@post),
+                    :notice => "Post was successfully updated.")
+      else
+        render :action => :edit
+      end
+    end
+
     protected
 
     def post_permalink_path(post)

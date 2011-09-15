@@ -1,6 +1,7 @@
 Needed for use as a basic blog
 
-  Editing articles
+/ Editing articles
+  Admin-only UI links
   RSS feed
   Basic CSS
   Recent articles list
@@ -17,6 +18,7 @@ Needed for use as a product or company blog
 
 Needed for 3rd-party use
 
+  CanCan API?
   Generators
     rails_blog_engine:install
     rails_blog_engine:filter

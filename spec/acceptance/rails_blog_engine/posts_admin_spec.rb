@@ -24,4 +24,14 @@ feature 'Posts admin', %q{
     page.should have_content("by sue")
     page.should have_content("My post")
   end
+
+  scenario 'Editing a post' do
+    post = RailsBlogEngine::Post.make!(:published)
+    visit "/blog/posts/#{post.to_param}/edit"
+    fill_in 'Title', :with => 'New Title'
+    fill_in 'Body', :with => 'New Body'
+    click_button "Update Post"
+    page.should have_content('New Title')
+    page.should have_content('New Body')
+  end
 end
