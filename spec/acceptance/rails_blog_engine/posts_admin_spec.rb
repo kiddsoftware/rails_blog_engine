@@ -7,15 +7,17 @@ feature 'Posts admin', %q{
 } do
 
   background do
-    @user = User.make!(:email => 'sue@example.com')
-    visit '/users/sign_in'
-    fill_in 'Email', :with => @user.email
-    fill_in 'Password', :with => @user.password
-    click_button 'Sign in'
+    visit '/users/sign_up'
+    fill_in 'Email', :with => "sue@example.com"
+    fill_in 'Password', :with => "password"
+    fill_in 'Password confirmation', :with => "password"
+    click_button 'Sign up'
   end
 
-  scenario 'Adding a new post' do
-    visit '/blog/posts/new'
+  scenario 'Adding and editing new post', :js => true do
+    visit '/blog'
+
+    click_link "New Post"
     fill_in 'Title', :with => 'Test Post'
     fill_in 'Permalink', :with => 'test-post'
     fill_in 'Body', :with => 'My post'
@@ -23,11 +25,8 @@ feature 'Posts admin', %q{
     page.should have_content("Test Post")
     page.should have_content("by sue")
     page.should have_content("My post")
-  end
 
-  scenario 'Editing a post' do
-    post = RailsBlogEngine::Post.make!(:published)
-    visit "/blog/posts/#{post.to_param}/edit"
+    click_link "Edit"
     fill_in 'Title', :with => 'New Title'
     fill_in 'Body', :with => 'New Body'
     click_button "Update Post"

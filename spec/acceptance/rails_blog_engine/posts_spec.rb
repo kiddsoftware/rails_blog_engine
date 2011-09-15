@@ -18,11 +18,14 @@ feature 'Posts', %q{
     visit '/blog'
     page.should have_content("Test Post")
     within('em') { page.should have_content("Body") }
+    page.should_not have_content("New Post")
   end
 
   scenario 'Viewing a post' do
     visit '/blog/2011/01/02/test'
     page.should have_content("Test Post")
+    page.should_not have_content("New Post")
     within('em') { page.should have_content("Body") }
+    page.should_not have_content("Edit Post")
   end
 end
