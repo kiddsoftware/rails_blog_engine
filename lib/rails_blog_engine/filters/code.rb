@@ -1,5 +1,9 @@
 # This is a strictly optional dependency.
-require "pygments" rescue nil
+begin
+  require "pygments"
+rescue LoadError => e
+  # Optional dependency.
+end
 
 module RailsBlogEngine::Filters
   # Syntax highlighting for code blocks.
