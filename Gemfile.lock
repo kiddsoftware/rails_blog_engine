@@ -87,6 +87,9 @@ GEM
     execjs (1.2.6)
       multi_json (~> 1.0)
     ffi (1.0.9)
+    generator_spec (0.8.4)
+      rails (>= 3.0, < 4.0)
+      rspec-rails
     guard (0.7.0)
       thor (~> 0.14.6)
     guard-rspec (0.4.5)
@@ -194,6 +197,7 @@ PLATFORMS
 DEPENDENCIES
   capybara-webkit (~> 0.6.1)
   database_cleaner
+  generator_spec
   guard-rspec
   launchy
   libnotify

@@ -1,0 +1,10 @@
+Description:
+    Install rails_blog_engine
+
+Example:
+    rails generate rails_blog_engine:install
+
+    This will create:
+        config/initializers/rails_blog_engine.rb
+        config/routes.rb: A new route for "/blog"
+        db/migrate/*.rb: Various new migrations
