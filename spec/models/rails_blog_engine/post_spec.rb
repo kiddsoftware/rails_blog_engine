@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe RailsBlogEngine::Post do
+  include RailsBlogEngine
+
   describe "validations" do
     before { RailsBlogEngine::Post.make! }
 
@@ -21,6 +23,31 @@ describe RailsBlogEngine::Post do
     it { should validate_uniqueness_of(:permalink) }
 
     it { should validate_presence_of(:author) }
+  end
+
+  describe ".recently_published" do
+    before do
+      base = Time.now
+      @posts = (0...3).map do |i|
+        Post.make!(:published, :published_at => base + i.seconds)
+      end
+      @posts[1].published_at = base + 10.seconds
+      @posts[1].save!
+      @unpublished = Post.make!
+    end
+
+    it "does not include unpublished posts" do
+      Post.recently_published.should_not include(@unpublished)
+    end
+
+    it "returns in order of descending published_at" do
+      Post.recently_published.should == [@posts[1], @posts[2], @posts[0]]
+    end
+
+    it "excludes posts which have been explicitly unpublished" do
+      @posts[1].unpublish!
+      Post.recently_published.should == [@posts[2], @posts[0]]
+    end
   end
 
   describe "state machine" do

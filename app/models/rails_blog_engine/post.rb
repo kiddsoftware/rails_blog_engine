@@ -13,6 +13,10 @@ module RailsBlogEngine
 
     attr_accessible :title, :body, :permalink, :author
 
+    # Recently published posts.  Use this with +limit+.
+    scope :recently_published,
+      where(:state => 'published').order('published_at DESC')
+
     # We use a state machine to represent our publication state.  This is
     # mostly because I visualize a UI with a great big "Publish" button,
     # and not a "Published" checkbox in a form.
