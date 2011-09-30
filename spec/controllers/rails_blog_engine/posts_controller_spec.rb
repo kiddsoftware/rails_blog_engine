@@ -27,10 +27,12 @@ describe RailsBlogEngine::PostsController do
       response.body.should match(/encoding="UTF-8"/)
     end
 
-    it "returns an atom feed" do
+    it "returns an ATOM feed" do
       puts response.body
       response.body.should have_selector('feed')
       response.body.should have_selector('link[@rel="alternate"][@type="text/html"][@href="http://test.host/blog/"]')
+      expected_title = I18n.t('rails_blog_engine.blog.title')
+      response.body.should have_selector('title', :text => expected_title)
     end
   end
 end
