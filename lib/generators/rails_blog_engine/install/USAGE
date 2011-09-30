@@ -6,5 +6,6 @@ Example:
 
     This will create:
         config/initializers/rails_blog_engine.rb
-        config/routes.rb: A new route for "/blog"
-        db/migrate/*.rb: Various new migrations
+        config/locales/rails_blog_engine.*.yml
+        config/routes.rb (A new route for "/blog")
+        db/migrate/*.rb

@@ -30,6 +30,9 @@ EOD
         directory "initializers" do
           file "rails_blog_engine.rb"
         end
+        directory "locales" do
+          file "rails_blog_engine.en.yml"
+        end
       end
       directory "db" do
         directory "migrate" do

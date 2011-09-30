@@ -13,9 +13,23 @@ class RailsBlogEngine::InstallGenerator < Rails::Generators::Base
     # Normally, we'd just call 'rake
     # "rails_blog_engine:install:migrations"' to do this for us, but it's
     # much more difficult to test.  So we roll our own version.
-    migrations = File.expand_path("../../../../../db/migrate/*.rb", __FILE__)
-    Dir[migrations].each do |path|
-      copy_file path, "db/migrate/#{File.basename(path)}"
+    copy_matching_files_from_gem('db/migrate/*.rb')
+  end
+
+  def copy_locales
+    copy_matching_files_from_gem('config/locales/rails_blog_engine.*.yml')
+  end
+
+  private
+
+  def gem_path(path)
+    File.expand_path("../../../../../#{path}", __FILE__)
+  end
+
+  def copy_matching_files_from_gem(pattern)
+    matches = gem_path(pattern)
+    Dir[matches].each do |path|
+      copy_file path, "#{File.dirname(pattern)}/#{File.basename(path)}"
     end
   end
 end
