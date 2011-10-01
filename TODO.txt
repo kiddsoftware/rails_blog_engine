@@ -4,15 +4,17 @@ Needed for use as a basic blog
 / Admin-only UI links
 , RSS feed
   Basic CSS
-  Pagination
+  Pagination (use https://github.com/amatsuda/kaminari)
 
 Needed for 3rd-party use
 
   Generators
-    rails_blog_engine:install
+/   rails_blog_engine:install
     rails_blog_engine:templates
     rails_blog_engine:filter
-  Documentation
+, Documentation
+  Ditch simple_form
+  Config class?  Either implement or remove initializer
 
 Needed for use as a product or company blog
 

@@ -64,8 +64,10 @@ Now you can set up your blog as described above.
 
 * ...be installable in under 5 minutes.
 * ...be simple and easily hackable.
+* ...be opinionated.
 * ...be customized by overriding templates or forking the source, not by
   adding configuration options.
+* ...be secure.
 * ...follow all white-hat SEO best practices.
 * ...have excellent unit test coverage, including tests for JavaScript.
 
