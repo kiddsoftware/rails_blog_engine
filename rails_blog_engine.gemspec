@@ -26,7 +26,6 @@ Gem::Specification.new do |s|
   s.add_dependency "haml", "~> 3.1.3"
 
   # User accounts and authentication.
-  s.add_dependency "devise", "~> 1.4.5"
   s.add_dependency "cancan", "~> 1.6.5"
 
   # Other useful libraries.
@@ -36,6 +35,7 @@ Gem::Specification.new do |s|
 
   # Development-only gems.
   s.add_development_dependency "sqlite3"
+  s.add_development_dependency "devise"
   s.add_development_dependency "steak"
   s.add_development_dependency "capybara-webkit", "~> 0.6.1"
   s.add_development_dependency "database_cleaner"
