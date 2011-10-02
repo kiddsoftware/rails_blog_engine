@@ -54,5 +54,10 @@ describe RailsBlogEngine::PostsController do
       response.body.should_not have_selector('entry title',
                                              :text => "Unpublished")
     end
+
+    it "includes publication times, not creation times" do
+      published_at = @posts.last.published_at.iso8601
+      response.body.should have_selector('entry published', text: published_at)
+    end
   end
 end
