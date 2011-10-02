@@ -33,6 +33,14 @@ describe RailsBlogEngine::PostsController do
       response.body.should have_selector('link[@rel="alternate"][@type="text/html"][@href="http://test.host/blog/"]')
       expected_title = I18n.t('rails_blog_engine.blog.title')
       response.body.should have_selector('title', :text => expected_title)
+      response.body.should have_selector('updated',
+                                         :text => post.updated_at.iso8601)
+    end
+
+    it "includes posts in the ATOM feed" do
+      response.body.should have_selector('entry') do |entry|
+        entry.should have_selector('title', :text => post.title)
+      end
     end
   end
 end
