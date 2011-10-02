@@ -80,8 +80,10 @@ The following features are on my wishlist:
 * Pagination
 * More generators to aid customization
 * Caching
-* Comments (with spam filtering via a 3rd-party service)
-* A basic editor: Auto-save, with preview and a "Publish" button.
+* Optional comments, with spam filtering via a 3rd-party service
+  * Why?  Intelligent discussion adds value and may make it easier
+    for searchers to find your blog posts.
+* A basic editor: Auto-save, with preview and a "Publish" button
 
 In other words, we want just enough features to make blogging pleasant, and
 nothing more.
