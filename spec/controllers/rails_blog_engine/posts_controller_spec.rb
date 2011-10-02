@@ -11,19 +11,19 @@ describe RailsBlogEngine::PostsController do
       base = 1.day.ago
       @posts = (0...20).map do |i|
         RailsBlogEngine::Post.make!(:published,
-                                    published_at: base + i.seconds,
-                                    title: "Title #{i}",
-                                    body: "Body #{i}",
-                                    permalink: "permalink-#{i}")
+                                    :published_at => base + i.seconds,
+                                    :title => "Title #{i}",
+                                    :body => "Body #{i}",
+                                    :permalink => "permalink-#{i}")
       end
       @updated_post = @posts[15]
       @updated_post.updated_at = Time.now
       @updated_post.save!
-      @unpublished = RailsBlogEngine::Post.make!(title: "Unpublished")
+      @unpublished = RailsBlogEngine::Post.make!(:title => "Unpublished")
     end
 
     before do
-      get :index, format: 'atom', use_route: :rails_blog_engine
+      get :index, :format => 'atom', :use_route => :rails_blog_engine
       response.should be_success
     end
 
@@ -57,7 +57,8 @@ describe RailsBlogEngine::PostsController do
 
     it "includes publication times, not creation times" do
       published_at = @posts.last.published_at.iso8601
-      response.body.should have_selector('entry published', text: published_at)
+      response.body.should have_selector('entry published',
+                                         :text => published_at)
     end
   end
 end

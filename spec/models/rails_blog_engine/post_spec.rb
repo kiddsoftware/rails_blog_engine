@@ -1,10 +1,10 @@
 require 'spec_helper'
 
 describe RailsBlogEngine::Post do
-  include RailsBlogEngine
+  Post = RailsBlogEngine::Post
 
   describe "validations" do
-    before { RailsBlogEngine::Post.make! }
+    before { Post.make! }
 
     it { should allow_value("Title").for(:title) }
     it { should_not allow_value("").for(:title) }
@@ -51,7 +51,7 @@ describe RailsBlogEngine::Post do
   end
 
   describe "state machine" do
-    let(:post) { RailsBlogEngine::Post.make }
+    let(:post) { Post.make }
 
     it "begins as unpublished" do
       post.should be_unpublished
@@ -68,7 +68,7 @@ describe RailsBlogEngine::Post do
       first_publication = Time.utc(1980, 1, 1)
       second_publication = Time.utc(1980, 1, 2)
 
-      post = RailsBlogEngine::Post.make
+      post = Post.make
       post.published_at.should be_nil
 
       Time.stub(:now) { first_publication }
@@ -84,7 +84,7 @@ describe RailsBlogEngine::Post do
   describe "#author_byline" do
     it "is set from the #author method before save" do
       author = User.make(:email => 'jane@example.com')
-      RailsBlogEngine::Post.make!(:author => author).author_byline.
+      Post.make!(:author => author).author_byline.
         should == 'jane'
     end
   end
@@ -92,17 +92,17 @@ describe RailsBlogEngine::Post do
   describe ".author_byline" do
     it "returns .byline if present" do
       author = mock('author', :byline => 'Jane Smith')
-      RailsBlogEngine::Post.author_byline(author).should == 'Jane Smith'
+      Post.author_byline(author).should == 'Jane Smith'
     end
 
     it "returns .email without domain if present" do
       author = mock('author', :email => 'jane@example.com')
-      RailsBlogEngine::Post.author_byline(author).should == 'jane'
+      Post.author_byline(author).should == 'jane'
     end
 
     it "returns 'unknown' otherwise" do
       author = mock('author')
-      RailsBlogEngine::Post.author_byline(author).should == 'unknown'
+      Post.author_byline(author).should == 'unknown'
     end
   end
 end
