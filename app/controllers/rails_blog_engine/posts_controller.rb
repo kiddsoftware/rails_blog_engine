@@ -1,5 +1,6 @@
 module RailsBlogEngine
   class PostsController < ApplicationController
+    before_filter :load_recently_published, :only => :index
     before_filter :load_by_permalink, :only => :show
 
     load_and_authorize_resource :class => "RailsBlogEngine::Post"
@@ -49,6 +50,10 @@ module RailsBlogEngine
       local_path = sprintf('%04d/%02d/%02d/%s', date.year, date.month,
                            date.day, post.permalink)
       root_path + local_path
+    end
+
+    def load_recently_published
+      @posts = Post.recently_published.limit(15)
     end
 
     def load_by_permalink
