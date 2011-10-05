@@ -58,8 +58,19 @@ describe RailsBlogEngine::Post do
     end
 
     it "can be published and unpublished" do
-      2.times { post.publish!; post.should be_published }
-      2.times { post.unpublish!; post.should be_unpublished }
+      post.publish!
+      post.should be_published
+
+      lambda do
+        post.publish!
+      end.should raise_error(StateMachine::InvalidTransition)
+
+      post.unpublish!
+      post.should be_unpublished
+
+      lambda do
+        post.unpublish!
+      end.should raise_error(StateMachine::InvalidTransition)
     end
   end
 

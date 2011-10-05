@@ -29,11 +29,11 @@ module RailsBlogEngine
       state :published
 
       event :publish do
-        transition any => :published
+        transition :unpublished => :published
       end
 
       event :unpublish do
-        transition any => :unpublished
+        transition :published => :unpublished
       end
 
       before_transition any => :published do |post, transition|
