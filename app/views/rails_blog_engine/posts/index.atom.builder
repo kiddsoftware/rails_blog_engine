@@ -4,6 +4,9 @@ atom_feed(:root_url => root_url) do |feed|
   @posts.each do |post|
     feed.entry(post, :published => post.published_at) do |entry|
       entry.title post.title
+      entry.author do |author|
+        author.name post.author_byline
+      end
     end
   end
 end

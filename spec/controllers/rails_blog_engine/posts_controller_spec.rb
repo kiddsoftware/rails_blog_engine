@@ -9,12 +9,14 @@ describe RailsBlogEngine::PostsController do
   describe "GET '/blog/posts.atom'" do
     before do
       base = 1.day.ago
+      @user = User.make!(:email => 'jdoe@example.com')
       @posts = (0...20).map do |i|
         RailsBlogEngine::Post.make!(:published,
                                     :published_at => base + i.seconds,
                                     :title => "Title #{i}",
                                     :body => "Body #{i}",
-                                    :permalink => "permalink-#{i}")
+                                    :permalink => "permalink-#{i}",
+                                    :author => @user)
       end
       @updated_post = @posts[15]
       @updated_post.updated_at = Time.now
@@ -55,10 +57,19 @@ describe RailsBlogEngine::PostsController do
                                              :text => "Unpublished")
     end
 
-    it "includes publication times, not creation times" do
-      published_at = @posts.last.published_at.iso8601
-      response.body.should have_selector('entry published',
-                                         :text => published_at)
+    context "each entry" do
+      it "includes publication times, not creation times" do
+        published_at = @posts.last.published_at.iso8601
+        response.body.should have_selector('entry published',
+                                  :text => published_at)
+      end
+
+      it "includes author information" do
+        response.body.should have_selector('entry author name', :text => "jdoe")
+      end
+
+      it "links to the post by permalink"
+      it "includes the formatted body text"
     end
   end
 end
