@@ -1,5 +1,7 @@
 module RailsBlogEngine
   class PostsController < ApplicationController
+    helper_method :post_permalink_url
+
     before_filter :load_recently_published, :only => :index
     before_filter :load_by_permalink, :only => :show
 
@@ -45,11 +47,18 @@ module RailsBlogEngine
 
     protected
 
-    def post_permalink_path(post)
+    def post_permalink_local_path(post)
       date = post.published_at.utc
-      local_path = sprintf('%04d/%02d/%02d/%s', date.year, date.month,
-                           date.day, post.permalink)
-      root_path + local_path
+      sprintf('%04d/%02d/%02d/%s', date.year, date.month,
+              date.day, post.permalink)
+    end
+
+    def post_permalink_path(post)
+      root_path + post_permalink_local_path(post)
+    end
+
+    def post_permalink_url(post)
+      root_url + post_permalink_local_path(post)
     end
 
     def load_recently_published

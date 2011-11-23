@@ -8,7 +8,7 @@ describe RailsBlogEngine::PostsController do
 
   describe "GET '/blog/posts.atom'" do
     before do
-      base = 1.day.ago
+      base = Time.utc(2011, 01, 02)
       @user = User.make!(:email => 'jdoe@example.com')
       @posts = (0...20).map do |i|
         RailsBlogEngine::Post.make!(:published,
@@ -68,7 +68,10 @@ describe RailsBlogEngine::PostsController do
         response.body.should have_selector('entry author name', :text => "jdoe")
       end
 
-      it "links to the post by permalink"
+      it "links to the post by permalink" do
+        response.body.should have_selector('entry link[@rel="alternate"][@type="text/html"][@href="http://test.host/blog/2011/01/02/permalink-19"]')
+      end
+
       it "includes the formatted body text"
     end
   end
