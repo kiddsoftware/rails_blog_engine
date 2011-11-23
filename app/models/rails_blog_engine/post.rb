@@ -58,13 +58,14 @@ module RailsBlogEngine
       # +author.byline+ method if present, and default to +author.email+
       # stripped of its domain.
       def author_byline(author)
-        byline = author.try(:byline)
-        return byline unless byline.nil?
-        email = author.try(:email)
-        unless email.nil?
-          return email.sub(/@.*\z/, '')
+        case
+        when author.respond_to?(:byline) && author.byline
+          author.byline
+        when author.respond_to?(:email) && author.email
+          author.email.sub(/@.*\z/, '')
+        else
+          'unknown'
         end
-        'unknown'
       end
     end
   end
