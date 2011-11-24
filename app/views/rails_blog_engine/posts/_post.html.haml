@@ -1,11 +1,13 @@
 .rails_blog_engine_post
-  %h1= post.title
+  %h1
+    = post.title
+    - if can?(:update, RailsBlogEngine::Post)
+      = link_to("Edit", edit_post_path(post),
+                :class => "edit_post btn secondary")
   %p.byline
     Posted
     = distance_of_time_in_words_to_now(post.published_at)
     ago by
     = post.author_byline
-    - if can?(:update, RailsBlogEngine::Post)
-      = link_to "Edit", edit_post_path(post)
 
   %div.body~ markdown(post.body)
