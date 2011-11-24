@@ -3,7 +3,8 @@ Needed for use as a basic blog
 / Editing articles
 / Admin-only UI links
 / RSS feed
-, Basic CSS
+/ Basic CSS
+  Link to posts, content_for :title, h1 vs h2
   Pagination (use https://github.com/amatsuda/kaminari)
 
 Needed for 3rd-party use
@@ -12,8 +13,7 @@ Needed for 3rd-party use
 /   rails_blog_engine:install
     rails_blog_engine:templates
     rails_blog_engine:filter
-, Documentation
-  Ditch simple_form
+/ Documentation
   Config class?  Either implement or remove initializer
 
 Needed for use as a product or company blog

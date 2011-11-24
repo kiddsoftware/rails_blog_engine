@@ -72,8 +72,7 @@ Now you can set up your blog as described above.
 * ...have excellent unit test coverage, including tests for JavaScript.
 
 CoffeeScript, SCSS and other standard Rails 3.1 features are fair game, as
-are RSpec, HAML and CanCan.  The `simple_form` dependency is going away
-shortly.
+are RSpec, HAML and CanCan.
 
 The following features are on my wishlist:
 
