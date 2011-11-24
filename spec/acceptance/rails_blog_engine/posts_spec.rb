@@ -21,11 +21,17 @@ feature 'Posts', %q{
     page.should_not have_content("New Post")
   end
 
-  scenario 'Viewing a post' do
-    visit '/blog/2011/01/02/test'
+  scenario 'Navigating to a post' do
+    visit '/blog'
+    click_on "Test Post"
     page.should have_content("Test Post")
     page.should_not have_content("New Post")
     within('em') { page.should have_content("Body") }
     page.should_not have_content("Edit Post")
+  end
+
+  scenario 'Linking to a post directly' do
+    visit '/blog/2011/01/02/test'
+    page.should have_content("Test Post")
   end
 end

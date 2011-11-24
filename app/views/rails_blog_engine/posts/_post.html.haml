@@ -1,6 +1,6 @@
 .rails_blog_engine_post
   %h1
-    = post.title
+    = link_to_unless_current(post.title, post_permalink_path(post))
     - if can?(:update, RailsBlogEngine::Post)
       = link_to("Edit", edit_post_path(post),
                 :class => "edit_post btn secondary")

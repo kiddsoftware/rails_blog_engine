@@ -1,6 +1,7 @@
 module RailsBlogEngine
   class PostsController < ApplicationController
     helper_method :post_permalink_url
+    helper_method :post_permalink_path
 
     before_filter :load_recently_published, :only => :index
     before_filter :load_by_permalink, :only => :show
