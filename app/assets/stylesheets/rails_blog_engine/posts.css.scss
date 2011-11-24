@@ -1,0 +1,26 @@
+// Place all the styles for posts and lists of posts here.  We assume a
+// light background color.
+.rails_blog_engine_post {
+  color: black;
+
+  // Clear top margins. We'll use the bottom margin for spacing.
+  h1, p.byline, .body {
+    margin-top: 0;
+  }
+
+  h1 {
+    margin-bottom: 0px;
+  }
+
+  p.byline {
+    margin-bottom: 10px;
+    color: grey;
+  }
+
+  .body {
+    >blockquote, >dl, >embed, >h1, >h2, >h3, >h4, >h5, >h6, >hr, >object, >ol,
+    >p, >pre, >table, >ul, >aside, >figure, >header, >hgroup, >section {
+      margin-bottom: 10px;
+    }
+  }
+}
