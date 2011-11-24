@@ -72,7 +72,9 @@ describe RailsBlogEngine::PostsController do
         response.body.should have_selector('entry link[@rel="alternate"][@type="text/html"][@href="http://test.host/blog/2011/01/02/permalink-19"]')
       end
 
-      it "includes the formatted body text"
+      it "includes the formatted body text" do
+        response.body.should have_selector('entry content', :content => "Body")
+      end
     end
   end
 end
