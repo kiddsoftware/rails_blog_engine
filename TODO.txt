@@ -4,7 +4,7 @@ Needed for use as a basic blog
 / Admin-only UI links
 / RSS feed
 / Basic CSS
-  Link to posts, content_for :title, h1 vs h2
+/ Link to posts, content_for :title
   Pagination (use https://github.com/amatsuda/kaminari)
 
 Needed for 3rd-party use

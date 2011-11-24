@@ -58,6 +58,17 @@ you could use the following:
 
 Now you can set up your blog as described above.
 
+## Setting up titles and <head> tags
+
+To set up titles, add the two following `yield` lines to the `<head>` tag
+in your `app/views/layouts/application.html.erb`:
+
+    <head>
+      <title><%= yield(:title) %></title>
+      <%= yield(:head) %>
+      <!-- etc. -->
+    </head>
+
 ## Philosophy and planned features
 
 `rails_blog_engine` should...
