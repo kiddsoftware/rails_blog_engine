@@ -6,13 +6,30 @@ describe RailsBlogEngine::InstallGenerator do
   include GeneratorSpec::TestCase
   destination File.expand_path("../../../../tmp", __FILE__)
 
+  # Create a file with the specified contents in our fake application tree.
+  # This is faster than generating a real application every time we test.
+  def create_file(path, contents)
+    full_path = ::File.join(destination_root, path)
+    mkdir_p(::File.dirname(full_path))
+    ::File.open(full_path, 'w') {|f| f.write(contents) }
+  end
+
   def prepare_destination
     super
-    routes_file = ::File.join(destination_root, 'config', 'routes.rb')
-    mkdir_p(::File.dirname(routes_file))
-    ::File.open(routes_file, 'w') {|f| f.write(<<EOD) }
+    create_file('config/routes.rb', <<EOD)
 Dummy::Application.routes.draw do
 end
+EOD
+    create_file('app/assets/stylesheets/application.css', <<EOD)
+/*
+ *= require_self
+ *= require_tree .
+*/
+EOD
+    create_file('app/assets/javascripts/application.js', <<EOD)
+//= require jquery
+//= require jquery_ujs
+//= require_tree .
 EOD
   end
 
@@ -23,6 +40,20 @@ EOD
 
   it "generates the expected files" do
     destination_root.should have_structure {
+      directory "app" do
+        directory "assets" do
+          directory "javascripts" do
+            file "application.js" do
+              contains "//= require rails_blog_engine"
+            end
+          end
+          directory "stylesheets" do
+            file "application.css" do
+              contains " *= require rails_blog_engine"
+            end
+          end
+        end
+      end
       directory "config" do
         file "routes.rb" do
           contains 'mount RailsBlogEngine::Engine => "/blog"'

@@ -6,4 +6,5 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require rails_blog_engine
 //= require_tree .

@@ -1,0 +1,6 @@
+/*
+ * Include the CSS files required by rails_blog_engine.
+ *
+ *= require_self
+ *= require_tree ./rails_blog_engine
+*/

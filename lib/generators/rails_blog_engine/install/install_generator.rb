@@ -20,6 +20,22 @@ class RailsBlogEngine::InstallGenerator < Rails::Generators::Base
     copy_matching_files_from_gem('config/locales/rails_blog_engine.*.yml')
   end
 
+  def register_javascripts
+    in_root do
+      append_file("app/assets/javascripts/application.js",
+                  "//= require rails_blog_engine\n",
+                  :before => /^\/\/= require/)
+    end
+  end
+
+  def register_stylesheets
+    in_root do
+      inject_into_file("app/assets/stylesheets/application.css",
+                       " *= require rails_blog_engine\n",
+                       :before => /^\*\//)
+    end
+  end
+
   private
 
   def gem_path(path)
