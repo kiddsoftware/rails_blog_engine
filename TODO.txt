@@ -15,6 +15,6 @@ Needed for use as a product or company blog
 
 Needed for 1.0
 
-, Comments
-  Spam filtering for comments: rakismet
+/ Comments
+, Spam filtering for comments: rakismet
   Recent articles list

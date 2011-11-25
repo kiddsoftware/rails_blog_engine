@@ -69,6 +69,24 @@ in your `app/views/layouts/application.html.erb`:
       <!-- etc. -->
     </head>
 
+## Turning on the spam filter
+
+To enable the spam filter, create an Akismet account at http://akismet.com/
+and set the environment variables `RAKISMET_KEY` and `RAKISMET_URL`.  If
+you're deploying to Heroku, you can do this using:
+
+    heroku config:add RAKISMET_KEY="mykey" RAKISMET_URL="http://example.com/"
+
+On your development machine, you can create a file named `.env` in the root
+directory of your project, and specify the variables as follows:
+
+    RAKISMET_KEY="mykey"
+    RAKISMET_URL="http://example.com/"
+
+Then launch your application using the `foreman start` command.  This will
+require adding the `foreman` gem to your `Gemfile`, and creating a
+`Procfile`.
+
 ## Philosophy and planned features
 
 `rails_blog_engine` should...

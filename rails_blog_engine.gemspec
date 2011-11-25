@@ -31,6 +31,9 @@ Gem::Specification.new do |s|
   # User accounts and authentication.
   s.add_dependency "cancan", "~> 1.6.5"
 
+  # Spam filtering.
+  s.add_dependency "rakismet", "~> 1.1.2"
+
   # Other useful libraries.
   s.add_dependency "simple_form", "~> 1.4.2"
   s.add_dependency "state_machine", "~> 1.0.0"
