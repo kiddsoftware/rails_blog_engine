@@ -43,5 +43,6 @@ feature 'Posts', %q{
     page.should_not have_content("Test Post")
     click_on "Next"
     page.should have_content("Test Post")
+    current_path.should == '/blog/page/2'
   end
 end

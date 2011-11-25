@@ -3,6 +3,9 @@ RailsBlogEngine::Engine.routes.draw do
   get('posts.:format' => 'posts#index', :as => :feed,
       :constraints => { :format => 'atom' })
 
+  # Extra pages.
+  get 'page/:page' => 'posts#index', :constraints => { :page => /\d+/ }
+
   # Home page.
   root :to => 'posts#index'
 
