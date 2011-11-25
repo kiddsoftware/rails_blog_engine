@@ -1,7 +1,6 @@
 RailsBlogEngine::Engine.routes.draw do
   # Atom feed.
-  get('posts.:format' => 'posts#index', :as => :feed,
-      :constraints => { :format => 'atom' })
+  get 'posts.:format' => 'posts#index', :constraints => { :format => 'atom' }
 
   # Extra pages.
   get 'page/:page' => 'posts#index', :constraints => { :page => /\d+/ }

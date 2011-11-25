@@ -41,6 +41,7 @@ describe RailsBlogEngine::PostsController do
       puts response.body
       response.body.should have_selector('feed')
       response.body.should have_selector('link[@rel="alternate"][@type="text/html"][@href="http://test.host/blog/"]')
+      response.body.should have_selector('link[@rel="self"][@type="application/atom+xml"][@href="http://test.host/blog/posts.atom"]')
       expected_title = I18n.t('rails_blog_engine.blog.title')
       response.body.should have_selector('title', :text => expected_title)
     end

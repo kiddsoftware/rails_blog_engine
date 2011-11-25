@@ -6,6 +6,7 @@ Needed for use as a basic blog
 / Basic CSS
 / Link to posts, content_for :title
 / Pagination (use https://github.com/amatsuda/kaminari)
+  Put more items in feed than on main page
 
 Needed for 3rd-party use
 
