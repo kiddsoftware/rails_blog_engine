@@ -7,34 +7,56 @@ feature 'Spam filtering', %q{
 } do
 
   background do
-    Rakismet.key = "fakekey"
-    Rakismet.url = "http://www.example.com/"
-
     @post = RailsBlogEngine::Post.make!(:published, :title => "Example post")
     visit '/blog'
     click_on "Example post"
   end
 
-  scenario 'Posting a real comment' do
-    VCR.use_cassette('rakismet-ham') do
-      fill_in "Your name", :with => "Jane Doe"
-      fill_in "Comment", :with => "An interesting and legitimate post."
-      click_on "Post Comment"
+  def enable_spam_filter
+    Rakismet.key = "fakekey"
+    Rakismet.url = "http://www.example.com/"
+  end
 
-      c = RailsBlogEngine::Comment.where(:author_byline => "Jane Doe").first
-      c.should_not be_spam
+  def disable_spam_filter
+    Rakismet.key = nil
+    Rakismet.url = nil
+  end
+
+  def post_ham_comment
+    fill_in "Your name", :with => "Jane Doe"
+    fill_in "Comment", :with => "An interesting and legitimate post."
+    click_on "Post Comment"
+  end
+
+  def post_spam_comment
+    fill_in "Your name", :with => "viagra-test-123"
+    fill_in "Comment", :with => "Buy toner cartridges today!"
+    click_on "Post Comment"
+  end
+
+  def last_comment
+    RailsBlogEngine::Comment.last
+  end
+
+  scenario 'Posting a real comment' do
+    enable_spam_filter
+    VCR.use_cassette('rakismet-ham') do
+      post_ham_comment
+      last_comment.should be_filtered_as_ham
     end
   end
 
   scenario 'Posting a spam comment' do
+    enable_spam_filter
     VCR.use_cassette('rakismet-spam') do
-      fill_in "Your name", :with => "viagra-test-123"
-      fill_in "Comment", :with => "Buy toner cartridges today!"
-      click_on "Post Comment"
-
-      c = RailsBlogEngine::Comment.
-        where(:author_byline => "viagra-test-123").first
-      c.should be_spam
+      post_spam_comment
+      last_comment.should be_filtered_as_spam
     end
+  end
+
+  scenario 'Posting a comment without configuring the spam filter' do
+    disable_spam_filter
+    post_spam_comment
+    last_comment.should be_unfiltered
   end
 end
