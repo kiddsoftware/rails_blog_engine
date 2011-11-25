@@ -4,7 +4,11 @@ module RailsBlogEngine
 
     def create
       @comment = @post.comments.create(params[:comment])
-      redirect_to post_permalink_path(@post)
+      if @comment.valid?
+        redirect_to post_permalink_path(@post)
+      else
+        render "new"
+      end
     end
 
     protected

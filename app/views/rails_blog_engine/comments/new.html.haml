@@ -1,0 +1,6 @@
+- content_for :title do
+  New Comment
+
+<h1>New Comment</h1>
+
+= render :partial => 'form', :locals => { :comment => @comment }

@@ -56,5 +56,14 @@ feature 'Posts', %q{
     page.should have_content("Test comment")
   end
 
-  # TODO: Comment validation & errors.
+  scenario 'Validating a comment' do
+    visit '/blog'
+    click_on 'Comment'
+    click_on 'Post Comment'
+    page.should have_content("can't be blank")
+    fill_in "Your name", :with => "Jane Doe"
+    fill_in "Comment", :with => "Test comment"
+    click_on "Post Comment"
+    page.should have_content("Jane Doe")
+  end
 end
