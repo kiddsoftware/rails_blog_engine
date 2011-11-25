@@ -1,2 +1,3 @@
-// Place all the behaviors and hooks related to the matching controller here.
-// All this logic will automatically be available in application.js.
+// Kaminari generates this HTML 5 element, so let's trick old versions of IE
+// into recognizing it.  Note that this may not be sufficient when printing.
+document.createElement("nav");

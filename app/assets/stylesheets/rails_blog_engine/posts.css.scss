@@ -2,13 +2,14 @@
 // light background color.
 
 .rails_blog_engine_posts {
-  .new_post.btn {
-    margin-bottom: 10px;
+  .new_post.btn, nav {
+    margin-bottom: 20px;
   }
 }
 
 .rails_blog_engine_post {
   color: black;
+  margin-bottom: 20px;
 
   // Clear top margins. We'll use the bottom margin for spacing.
   >h1, >p.byline, >.body {
