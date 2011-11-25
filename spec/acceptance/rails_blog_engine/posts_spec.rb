@@ -54,6 +54,11 @@ feature 'Posts', %q{
     click_on "Post Comment"
     page.should have_content("Jane Doe")
     page.should have_content("Test comment")
+
+    # Change comment link text.
+    visit '/blog'
+    click_on "1 comment"
+    page.should have_content("Jane Doe")
   end
 
   scenario 'Validating a comment' do

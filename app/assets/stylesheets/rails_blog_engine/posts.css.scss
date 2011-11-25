@@ -28,7 +28,8 @@
     color: grey;
   }
 
-  >.body {
+  // This works at both the top level and in nested comments.
+  .body {
     >blockquote, >dl, >embed, >h1, >h2, >h3, >h4, >h5, >h6, >hr, >object, >ol,
     >p, >pre, >table, >ul, >aside, >figure, >header, >hgroup, >section {
       margin-bottom: 10px;

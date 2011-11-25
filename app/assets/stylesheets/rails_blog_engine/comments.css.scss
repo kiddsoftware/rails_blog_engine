@@ -1,4 +1,18 @@
-/*
-  Place all the styles related to the matching controller here.
-  They will automatically be included in application.css.
-*/
+.rails_blog_engine_comment.show {
+  border: 1px solid lightgrey;
+  padding: 10px 10px 0 10px;
+  margin-bottom: 20px;
+  max-width: 600px;
+
+  >.byline {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-weight: normal;
+
+    a.comment-link {
+      color: inherit;
+      &:link, &:visited { text-decoration: none; }
+      &:hover, &:active { text-decoration: underline; }
+    }
+  }
+}

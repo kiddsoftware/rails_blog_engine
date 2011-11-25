@@ -1,7 +1,11 @@
-.rails_blog_engine_comment
-  %p.byline
-    Posted
-    = distance_of_time_in_words_to_now(comment.created_at)
-    ago by
-    = comment.author_byline
+.rails_blog_engine_comment.show
+  %h4.byline
+    %a{:name => "comment-#{comment.id}"}
+      - if comment.author_url && !comment.author_url.blank?
+        = link_to comment.author_byline, comment.author_url, :rel => "nofollow"
+      - else
+        = comment.author_byline
+      said
+      %a{:class => "comment-link", :href => "#comment-#{comment.id}"}= distance_of_time_in_words_to_now(comment.created_at)
+      later:
   %div.body~ markdown(comment.body)
