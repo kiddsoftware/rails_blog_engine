@@ -1,0 +1,6 @@
+= simple_form_for(comment, :url => post_comments_path(comment.post)) do |f|
+  = f.input :author_byline
+  = f.input :author_email
+  = f.input :author_url
+  = f.input :body
+  = f.button :submit, :class => "new_comment btn primary"

@@ -11,3 +11,11 @@
     = post.author_byline
 
   %div.body~ markdown(post.body)
+
+  - if current_page?(post_permalink_path(post))
+    = render post.comments
+    = render(:partial => 'rails_blog_engine/comments/form',
+             :locals => { :comment => @comment })
+  - else
+    %p.links
+      = link_to("Comment on this post", post_permalink_path(post))

@@ -13,5 +13,7 @@ RailsBlogEngine::Engine.routes.draw do
       :constraints => { :year => /\d{4,}/, :month => /\d\d/, :day => /\d\d/ })
 
   # A regular resource interface for everything else.
-  resources :posts, :except => [:index, :show, :delete]
+  resources :posts, :except => [:index, :show, :delete] do
+    resources :comments, :only => [:create]
+  end
 end

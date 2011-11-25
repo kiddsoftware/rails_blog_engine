@@ -2,3 +2,14 @@ en:
   rails_blog_engine:
     blog:
       title: "Blog"
+  activerecord:
+    attributes:
+      rails_blog_engine/comment:    
+        author_byline: "Your name"
+        author_email: "Your email"
+        author_url: "Your website"
+        body: "Comment"
+  helpers:
+    submit:
+      comment:
+        create: "Post Comment"

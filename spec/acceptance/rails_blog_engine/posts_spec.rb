@@ -45,4 +45,16 @@ feature 'Posts', %q{
     page.should have_content("Test Post")
     current_path.should == '/blog/page/2'
   end
+
+  scenario 'Adding a comment' do
+    visit '/blog'
+    click_on 'Comment'
+    fill_in "Your name", :with => "Jane Doe"
+    fill_in "Comment", :with => "Test comment"
+    click_on "Post Comment"
+    page.should have_content("Jane Doe")
+    page.should have_content("Test comment")
+  end
+
+  # TODO: Comment validation & errors.
 end

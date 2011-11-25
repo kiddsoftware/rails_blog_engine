@@ -3,6 +3,8 @@ require 'spec_helper'
 describe RailsBlogEngine::Post do
   Post = RailsBlogEngine::Post
 
+  it { should have_many(:comments) }
+
   describe "validations" do
     before { Post.make! }
 

@@ -18,3 +18,7 @@ User.blueprint do
   password { "password" }
   password_confirmation { "password" }
 end
+
+RailsBlogEngine::Comment.blueprint do
+  # Attributes here
+end
