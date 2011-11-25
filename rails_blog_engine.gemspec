@@ -40,6 +40,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency "sqlite3"
   s.add_development_dependency "devise"
   s.add_development_dependency "steak"
+  s.add_development_dependency "foreman"
   s.add_development_dependency "capybara-webkit", "~> 0.6.1"
   s.add_development_dependency "database_cleaner"
   s.add_development_dependency "shoulda-matchers"
