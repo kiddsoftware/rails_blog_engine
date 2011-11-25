@@ -1,5 +1,9 @@
 - content_for :title do
   = t('rails_blog_engine.blog.title')
+- if params[:page]
+  -# Don't index pages after the first, but still follow links.
+  - content_for :head do
+    %meta(name="robots" content="noindex, follow")
 
 .rails_blog_engine_posts
   - if can?(:create, RailsBlogEngine::Post)

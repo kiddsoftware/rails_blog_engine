@@ -5,7 +5,7 @@ Needed for use as a basic blog
 / RSS feed
 / Basic CSS
 / Link to posts, content_for :title
-  Pagination (use https://github.com/amatsuda/kaminari)
+/ Pagination (use https://github.com/amatsuda/kaminari)
 
 Needed for 3rd-party use
 
