@@ -34,4 +34,14 @@ feature 'Posts', %q{
     visit '/blog/2011/01/02/test'
     page.should have_content("Test Post")
   end
+
+  scenario 'Looking for posts on page 2' do
+    # Force our original post off the front page.
+    5.times { RailsBlogEngine::Post.make!(:published) }
+
+    visit '/blog'
+    page.should_not have_content("Test Post")
+    click_on "Next"
+    page.should have_content("Test Post")
+  end
 end

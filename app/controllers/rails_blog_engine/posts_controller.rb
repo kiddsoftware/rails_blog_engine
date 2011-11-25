@@ -7,7 +7,6 @@ module RailsBlogEngine
     before_filter :load_by_permalink, :only => :show
 
     load_and_authorize_resource :class => "RailsBlogEngine::Post"
-    skip_load_resource :only => :show
 
     def index
       respond_to do |format|
@@ -63,7 +62,7 @@ module RailsBlogEngine
     end
 
     def load_recently_published
-      @posts = Post.recently_published.limit(15)
+      @posts = Post.recently_published.page(params[:page]).per(5)
     end
 
     def load_by_permalink

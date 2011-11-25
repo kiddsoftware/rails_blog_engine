@@ -25,6 +25,9 @@ Gem::Specification.new do |s|
   s.add_dependency "coffee-script", "~> 2.2.0"
   s.add_dependency "haml", "~> 3.1.3"
 
+  # Pagination.
+  s.add_dependency "kaminari", "~> 0.12.4"
+
   # User accounts and authentication.
   s.add_dependency "cancan", "~> 1.6.5"
 
