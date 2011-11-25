@@ -17,4 +17,5 @@ Needed for 1.0
 
 / Comments
 , Spam filtering for comments: rakismet
+  Secure comment fields using attr_accessible
   Recent articles list

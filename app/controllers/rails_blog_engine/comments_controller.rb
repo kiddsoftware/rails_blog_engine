@@ -3,7 +3,16 @@ module RailsBlogEngine
     before_filter :load_post
 
     def create
-      @comment = @post.comments.create(params[:comment])
+      # Record some extra information from our environment.  Most of this
+      # is used by the spam filter.
+      comment_attrs = params[:comment].merge({
+        :author_ip => request.remote_ip,
+        :author_user_agent => request.env['HTTP_USER_AGENT'],
+        :referrer => request.env['HTTP_REFERER'],
+        :author_can_post => can?(:create, RailsBlogEngine::Post)
+      })
+
+      @comment = @post.comments.create(comment_attrs)
       if @comment.valid?
         redirect_to post_permalink_path(@post)
       else
