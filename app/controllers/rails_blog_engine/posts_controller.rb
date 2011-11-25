@@ -10,8 +10,8 @@ module RailsBlogEngine
 
     def index
       respond_to do |format|
-        format.html
-        format.atom
+        format.html { @posts = @posts.page(params[:page]).per(5) }
+        format.atom { @posts = @posts.limit(15) }
       end
     end
 
@@ -62,7 +62,7 @@ module RailsBlogEngine
     end
 
     def load_recently_published
-      @posts = Post.recently_published.page(params[:page]).per(5)
+      @posts = Post.recently_published
     end
 
     def load_by_permalink

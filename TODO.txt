@@ -1,20 +1,8 @@
-Needed for use as a basic blog
-
-/ Editing articles
-/ Admin-only UI links
-/ RSS feed
-/ Basic CSS
-/ Link to posts, content_for :title
-/ Pagination (use https://github.com/amatsuda/kaminari)
-  Put more items in feed than on main page
-
 Needed for 3rd-party use
 
   Generators
-/   rails_blog_engine:install
     rails_blog_engine:templates
     rails_blog_engine:filter
-/ Documentation
   Config class?  Either implement or remove initializer
 
 Needed for use as a product or company blog
@@ -23,7 +11,7 @@ Needed for use as a product or company blog
   Editor polish
     Auto-save
     Publish / Unpublish button
-  SEO best practices
+, SEO best practices
 
 Needed for 1.0
 
