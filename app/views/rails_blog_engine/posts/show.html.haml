@@ -2,5 +2,7 @@
   = @post.title
   —
   = t('rails_blog_engine.blog.title')
+- content_for :head do
+  = auto_discovery_link_tag :atom, feed_url
 
 = render @post
