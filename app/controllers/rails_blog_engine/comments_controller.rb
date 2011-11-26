@@ -2,6 +2,8 @@ module RailsBlogEngine
   class CommentsController < ApplicationController
     before_filter :load_post
 
+    authorize_resource :class => "RailsBlogEngine::Comment"
+
     def create
       # Record some extra information from our environment.  Most of this
       # is used by the spam filter.
