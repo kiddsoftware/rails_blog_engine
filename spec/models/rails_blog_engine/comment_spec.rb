@@ -6,7 +6,18 @@ describe RailsBlogEngine::Comment do
   it { should_not allow_value('').for(:author_byline) }
   it { should_not allow_value('').for(:body) }
 
-  describe ".state" do
+  describe ".visible" do
+    it "includes unfiltered and ham messages, but not spam" do
+      @unfiltered = RailsBlogEngine::Comment.make!
+      @ham = RailsBlogEngine::Comment.make!(:state => 'filtered_as_ham')
+      @spam = RailsBlogEngine::Comment.make!(:state => 'filtered_as_spam')
+      RailsBlogEngine::Comment.visible.should include(@unfiltered)
+      RailsBlogEngine::Comment.visible.should include(@ham)
+      RailsBlogEngine::Comment.visible.should_not include(@spam)
+    end
+  end
+
+  describe "#state" do
     subject { RailsBlogEngine::Comment.make! }
 
     it "begins in state unfiltered" do

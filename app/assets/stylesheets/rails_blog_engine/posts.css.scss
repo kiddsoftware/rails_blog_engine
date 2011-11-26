@@ -35,4 +35,12 @@
       margin-bottom: 10px;
     }
   }
+
+  // We use this for moderation warnings.
+  >.flash.notice {
+    border: 1px solid #049cdb;
+    background: #c7eefe;
+    padding: 10px;
+    max-width: 600px;
+  }
 }

@@ -35,7 +35,7 @@ feature 'Spam filtering', %q{
   end
 
   def last_comment
-    RailsBlogEngine::Comment.last
+    @last_comment ||= RailsBlogEngine::Comment.last
   end
 
   scenario 'Posting a real comment' do
@@ -43,6 +43,8 @@ feature 'Spam filtering', %q{
     VCR.use_cassette('rakismet-ham') do
       post_ham_comment
       last_comment.should be_filtered_as_ham
+      page.should have_content(last_comment.body)
+      page.should_not have_content("moderation")
     end
   end
 
@@ -51,6 +53,8 @@ feature 'Spam filtering', %q{
     VCR.use_cassette('rakismet-spam') do
       post_spam_comment
       last_comment.should be_filtered_as_spam
+      page.should_not have_content(last_comment.body)
+      page.should have_content("moderation")
     end
   end
 

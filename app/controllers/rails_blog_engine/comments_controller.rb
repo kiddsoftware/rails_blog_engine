@@ -15,6 +15,9 @@ module RailsBlogEngine
       @comment = @post.comments.create(comment_attrs)
       if @comment.valid?
         @comment.run_spam_filter
+        if @comment.filtered_as_spam?
+          flash[:comment_notice] = "Your comment has been held for moderation."
+        end
         redirect_to post_permalink_path(@post)
       else
         render "new"

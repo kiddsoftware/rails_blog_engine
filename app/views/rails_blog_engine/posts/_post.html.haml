@@ -15,13 +15,15 @@
   - if current_page?(post_permalink_path(post))
     %h3.comments
       %a(name="comments") Comments
-    = render post.comments
+    = render post.comments.visible
+    - if flash[:comment_notice]
+      %p.flash.notice= flash[:comment_notice]
     = render(:partial => 'rails_blog_engine/comments/form',
              :locals => { :comment => @comment })
   - else
     %p.links
-      - if post.comments.empty?
+      - if post.comments.visible.empty?
         = link_to("Comment", post_permalink_path(post) + "#comments")
       - else
-        = link_to(pluralize(post.comments.count, 'comment'),
+        = link_to(pluralize(post.comments.visible.count, 'comment'),
                   post_permalink_path(post) + "#comments")

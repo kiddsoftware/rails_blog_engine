@@ -8,6 +8,9 @@ module RailsBlogEngine
     validates :author_byline, :presence => true
     validates :body, :presence => true
 
+    # Comments that are visible to the public.
+    scope :visible, where(:state => ['unfiltered', 'filtered_as_ham'])
+
     # Tell rakismet where to find the fields it needs for the spam filter.
     # We don't need to specify fields which already have the right name.
     #
@@ -30,7 +33,7 @@ module RailsBlogEngine
       end
     end
 
-    # Run the spam filter on this comment an update it appropriately.
+    # Run the spam filter on this comment and update it appropriately.
     def run_spam_filter
       return unless Rakismet.key
       if spam?
