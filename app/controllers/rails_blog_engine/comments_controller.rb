@@ -17,8 +17,10 @@ module RailsBlogEngine
         @comment.run_spam_filter
         if @comment.filtered_as_spam?
           flash[:comment_notice] = "Your comment has been held for moderation."
+          redirect_to(post_permalink_path(@post) + '#comment-flash')
+        else
+          redirect_to(post_permalink_path(@post) + "#comment-#{@comment.id}")
         end
-        redirect_to post_permalink_path(@post)
       else
         render "new"
       end

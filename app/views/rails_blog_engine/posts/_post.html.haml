@@ -17,7 +17,8 @@
       %a(name="comments") Comments
     = render post.comments.visible
     - if flash[:comment_notice]
-      %p.flash.notice= flash[:comment_notice]
+      %p.flash.notice
+        %a(name="comment-flash")= flash[:comment_notice]
     = render(:partial => 'rails_blog_engine/comments/form',
              :locals => { :comment => @comment })
   - else
