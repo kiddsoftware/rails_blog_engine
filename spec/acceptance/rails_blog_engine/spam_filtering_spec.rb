@@ -77,13 +77,15 @@ feature 'Spam filtering', %q{
       wait_for_comment_in_state(:filtered_as_ham)
     end
     page.should have_content('viagra-test-123')
+    page.should have_selector('.filtered_as_ham')
 
     sign_in_as_admin
     VCR.use_cassette('rakismet-train-as-spam') do
       click_on 'Spam'
       wait_for_comment_in_state(:marked_as_spam)
     end
-    page.should_not have_content('viagra-test-123')
+    page.should have_content('viagra-test-123')
+    page.should have_selector('.marked_as_spam')
   end
 
   scenario 'Filtered as spam, mark as ham'

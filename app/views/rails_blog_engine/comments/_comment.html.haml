@@ -1,4 +1,4 @@
-.rails_blog_engine_comment.show
+.rails_blog_engine_comment.show{:class => comment.state}
   - if can?(:update, comment)
     .update_comment_tools
       - if can?(:mark_as_spam, comment) && comment.can_mark_as_spam?

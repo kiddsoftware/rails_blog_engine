@@ -27,6 +27,7 @@ module RailsBlogEngine
     end
 
     def show
+      @comments = comments_to_display.order(:created_at)
       @comment = Comment.new {|c| c.post = @post }
     end
 
@@ -53,6 +54,14 @@ module RailsBlogEngine
       date = Time.utc(params[:year], params[:month], params[:day])
       @post = Post.where(:published_at => (date..date.end_of_day),
                          :permalink => params[:permalink]).first!
+    end
+
+    def comments_to_display
+      if can?(:update, RailsBlogEngine::Comment)
+        @post.comments
+      else
+        @post.comments.visible
+      end
     end
   end
 end

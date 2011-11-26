@@ -1,3 +1,15 @@
+Before public release
+
+, Spam filtering for comments: rakismet
+    Moderation by administrators
+  Secure comment fields using attr_accessible
+  Secure HTML in comments
+  Table changes
+    Comment author_id
+    Comment state index
+    Collapse migrations into 1 giant migration
+  Integrate into Kidd Software site
+
 Needed for 3rd-party use
 
   Generators
@@ -15,7 +27,4 @@ Needed for use as a product or company blog
 
 Needed for 1.0
 
-/ Comments
-, Spam filtering for comments: rakismet
-  Secure comment fields using attr_accessible
   Recent articles list

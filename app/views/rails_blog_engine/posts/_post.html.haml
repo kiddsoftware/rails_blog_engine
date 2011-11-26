@@ -15,7 +15,7 @@
   - if current_page?(post_permalink_path(post))
     %h3.comments
       %a(name="comments") Comments
-    = render post.comments.visible
+    = render @comments
     - if flash[:comment_notice]
       %p.flash.notice
         %a(name="comment-flash")= flash[:comment_notice]

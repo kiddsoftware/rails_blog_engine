@@ -4,6 +4,12 @@
   margin-bottom: 20px;
   max-width: 600px;
 
+  &.filtered_as_spam, &.marked_as_spam {
+    background: lighten(#ffb6c1, 10%);
+    border-color: lighten(#ffb6c1, 5%);
+    color: darkgrey;
+  }
+
   >.byline {
     margin-top: 0;
     margin-bottom: 10px;
