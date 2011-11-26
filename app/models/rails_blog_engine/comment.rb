@@ -23,6 +23,8 @@ module RailsBlogEngine
       state :unfiltered
       state :filtered_as_ham
       state :filtered_as_spam
+      state :marked_as_ham
+      state :marked_as_spam
 
       event :filter_as_ham do
         transition :unfiltered => :filtered_as_ham
@@ -31,6 +33,18 @@ module RailsBlogEngine
       event :filter_as_spam do
         transition :unfiltered => :filtered_as_spam
       end
+
+      event :mark_as_ham do
+        transition [:filtered_as_spam, :marked_as_spam] => :marked_as_ham
+      end
+
+      event :mark_as_spam do
+        transition :unfiltered => :marked_as_spam
+        transition [:filtered_as_ham, :marked_as_ham] => :marked_as_spam
+      end
+
+      after_transition any => :marked_as_ham, :do => :train_as_ham
+      after_transition any => :marked_as_spam, :do => :train_as_spam
     end
 
     # Run the spam filter on this comment and update it appropriately.
@@ -41,6 +55,16 @@ module RailsBlogEngine
       else
         filter_as_ham!
       end
+    end
+
+    # Train our spam filter to treat messages like this as ham.
+    def train_as_ham
+      ham! if Rakismet.key
+    end
+
+    # Train our spam filter to treat messages like this as spam.
+    def train_as_spam
+      spam! if Rakismet.key
     end
   end
 end
