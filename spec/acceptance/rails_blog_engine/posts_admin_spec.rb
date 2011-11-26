@@ -7,11 +7,7 @@ feature 'Posts admin', %q{
 } do
 
   background do
-    visit '/users/sign_up'
-    fill_in 'Email', :with => "sue@example.com"
-    fill_in 'Password', :with => "password"
-    fill_in 'Password confirmation', :with => "password"
-    click_button 'Sign up'
+    sign_in_as_admin
   end
 
   scenario 'Adding and editing new post', :js => true do
