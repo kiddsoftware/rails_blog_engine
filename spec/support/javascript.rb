@@ -17,8 +17,8 @@ RSpec.configure do |config|
       DatabaseCleaner.strategy = :truncation
     else
       DatabaseCleaner.strategy = :transaction
-      DatabaseCleaner.start
     end
+    DatabaseCleaner.start
   end
 
   config.after(:each) do
