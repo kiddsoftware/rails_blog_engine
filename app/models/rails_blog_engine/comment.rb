@@ -9,7 +9,8 @@ module RailsBlogEngine
     validates :body, :presence => true
 
     # Comments that are visible to the public.
-    scope :visible, where(:state => ['unfiltered', 'filtered_as_ham'])
+    scope(:visible,
+          where(:state => ['unfiltered', 'filtered_as_ham', 'marked_as_ham']))
 
     # Tell rakismet where to find the fields it needs for the spam filter.
     # We don't need to specify fields which already have the right name.

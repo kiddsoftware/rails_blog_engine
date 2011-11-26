@@ -10,10 +10,14 @@ describe RailsBlogEngine::Comment do
     it "includes unfiltered and ham messages, but not spam" do
       @unfiltered = RailsBlogEngine::Comment.make!
       @ham = RailsBlogEngine::Comment.make!(:state => 'filtered_as_ham')
+      @ham2 = RailsBlogEngine::Comment.make!(:state => 'marked_as_ham')
       @spam = RailsBlogEngine::Comment.make!(:state => 'filtered_as_spam')
+      @spam2 = RailsBlogEngine::Comment.make!(:state => 'marked_as_spam')
       RailsBlogEngine::Comment.visible.should include(@unfiltered)
       RailsBlogEngine::Comment.visible.should include(@ham)
+      RailsBlogEngine::Comment.visible.should include(@ham2)
       RailsBlogEngine::Comment.visible.should_not include(@spam)
+      RailsBlogEngine::Comment.visible.should_not include(@spam2)
     end
   end
 
