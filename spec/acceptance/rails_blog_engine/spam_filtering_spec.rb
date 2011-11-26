@@ -88,5 +88,23 @@ feature 'Spam filtering', %q{
     page.should have_selector('.marked_as_spam')
   end
 
-  scenario 'Filtered as spam, mark as ham'
+  scenario 'Filtered as spam, mark as ham', :js => true do
+    enable_spam_filter
+    VCR.use_cassette('rakismet-spam', :match_requests_on => [:method]) do
+      post_ham_comment
+      wait_for_comment_in_state(:filtered_as_spam)
+    end
+    page.should_not have_content('Jane Doe')
+
+    sign_in_as_admin
+    page.should have_content('Jane Doe')
+    page.should have_selector('.filtered_as_spam')
+
+    VCR.use_cassette('rakismet-train-as-ham') do
+      click_on 'Not Spam'
+      wait_for_comment_in_state(:marked_as_ham)
+    end
+    page.should have_content('Jane Doe')
+    page.should have_selector('.marked_as_ham')
+  end
 end

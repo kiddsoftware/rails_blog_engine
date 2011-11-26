@@ -34,6 +34,11 @@ module RailsBlogEngine
       redirect_to(post_permalink_path(@post) + "#comment-#{@comment.id}")
     end
 
+    def mark_as_ham
+      @comment.mark_as_ham!
+      redirect_to(post_permalink_path(@post) + "#comment-#{@comment.id}")
+    end
+
     protected
 
     def load_post
