@@ -48,7 +48,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency "database_cleaner"
   s.add_development_dependency "shoulda-matchers"
   s.add_development_dependency "generator_spec"
-  s.add_development_dependency "vcr"
+  s.add_development_dependency "vcr", ">= 2.0.0.beta2"
   s.add_development_dependency "fakeweb"
   #s.add_development_dependency "machinist" (see Gemfile)
   #s.add_development_dependency "pygments" (see Gemfile)

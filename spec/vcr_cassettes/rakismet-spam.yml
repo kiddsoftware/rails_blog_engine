@@ -1,28 +1,30 @@
 ---
-- !ruby/struct:VCR::HTTPInteraction
-  request: !ruby/struct:VCR::Request
-    method: :post
-    uri: http://fakekey.rest.akismet.com:80/1.1/comment-check
+http_interactions:
+- request:
+    method: post
+    uri: http://fakekey.rest.akismet.com/1.1/comment-check
     body: comment_author=viagra-test-123&comment_content=Buy+toner+cartridges+today%21&user_ip=127.0.0.1&referrer=http%3A%2F%2Fwww.example.com%2Fblog%2F2011%2F11%2F25%2Fpermalink-0041&comment_type=comment&blog=http%3A%2F%2Fwww.example.com%2F
     headers:
-      user-agent:
+      User-Agent:
       - Rails/3.1.3 | Rakismet/1.1.2
-      content-type:
+      Content-Type:
       - application/x-www-form-urlencoded
-  response: !ruby/struct:VCR::Response
-    status: !ruby/struct:VCR::ResponseStatus
+  response:
+    status:
       code: 200
       message: OK
     headers:
-      server:
+      Server:
       - nginx
-      date:
+      Date:
       - Fri, 25 Nov 2011 20:53:44 GMT
-      content-type:
+      Content-Type:
       - text/plain; charset=utf-8
-      x-akismet-server:
+      X-Akismet-Server:
       - 192.168.7.151
-      content-length:
+      Content-Length:
       - '4'
     body: 'true'
     http_version: '1.1'
+  recorded_at: Fri, 25 Nov 2011 21:00:15 GMT
+recorded_with: VCR 1.11.3
