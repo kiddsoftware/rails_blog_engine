@@ -80,8 +80,8 @@ you're deploying to Heroku, you can do this using:
 On your development machine, you can create a file named `.env` in the root
 directory of your project, and specify the variables as follows:
 
-    RAKISMET_KEY="mykey"
-    RAKISMET_URL="http://example.com/"
+    RAKISMET_KEY=mykey
+    RAKISMET_URL=http://example.com/
 
 Then launch your application using the `foreman start` command.  This will
 require adding the `foreman` gem to your `Gemfile`, and creating a
