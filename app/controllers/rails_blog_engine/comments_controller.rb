@@ -2,7 +2,8 @@ module RailsBlogEngine
   class CommentsController < ApplicationController
     before_filter :load_post
 
-    authorize_resource :class => "RailsBlogEngine::Comment"
+    load_and_authorize_resource :class => "RailsBlogEngine::Comment"
+    skip_load_resource :create
 
     def create
       # Record some extra information from our environment.  Most of this
@@ -26,6 +27,11 @@ module RailsBlogEngine
       else
         render "new"
       end
+    end
+
+    def mark_as_spam
+      @comment.mark_as_spam!
+      redirect_to(post_permalink_path(@post) + "#comment-#{@comment.id}")
     end
 
     protected

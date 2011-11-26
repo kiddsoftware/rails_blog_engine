@@ -1,4 +1,10 @@
 .rails_blog_engine_comment.show
+  - if can?(:update, comment)
+    .update_comment_tools
+      - if can?(:mark_as_spam, comment) && comment.can_mark_as_spam?
+        = link_to("Spam",
+                  mark_as_spam_post_comment_path(comment.post, comment),
+                  :method => :post, :class => "btn")
   %h4.byline
     %a{:name => "comment-#{comment.id}"}
       - if comment.author_url && !comment.author_url.blank?

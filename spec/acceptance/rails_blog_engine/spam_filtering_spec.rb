@@ -40,22 +40,18 @@ feature 'Spam filtering', %q{
 
   scenario 'Posting a real comment' do
     enable_spam_filter
-    VCR.use_cassette('rakismet-ham') do
-      post_ham_comment
-      last_comment.should be_filtered_as_ham
-      page.should have_content(last_comment.body)
-      page.should_not have_content("moderation")
-    end
+    VCR.use_cassette('rakismet-ham') { post_ham_comment }
+    last_comment.should be_filtered_as_ham
+    page.should have_content(last_comment.body)
+    page.should_not have_content("moderation")
   end
 
   scenario 'Posting a spam comment' do
     enable_spam_filter
-    VCR.use_cassette('rakismet-spam') do
-      post_spam_comment
-      last_comment.should be_filtered_as_spam
-      page.should_not have_content(last_comment.body)
-      page.should have_content("moderation")
-    end
+    VCR.use_cassette('rakismet-spam') { post_spam_comment }
+    last_comment.should be_filtered_as_spam
+    page.should_not have_content(last_comment.body)
+    page.should have_content("moderation")
   end
 
   scenario 'Posting a comment without configuring the spam filter' do
@@ -63,4 +59,32 @@ feature 'Spam filtering', %q{
     post_spam_comment
     last_comment.should be_unfiltered
   end
+
+  # Wait for the comment to have the specified state.  This forces us to
+  # synchronize the current thread with the background thread the runs the
+  # webserver, which is helpful for ensuring that VCR cassettes will be
+  # left "in the VCR" until they've actually been used by the other thread.
+  def wait_for_comment_in_state(state)
+    Timeout.timeout(3) do
+      sleep 0.1 until RailsBlogEngine::Comment.where(:state => state.to_s).first
+    end
+  end
+
+  scenario 'Filtered as ham, mark as spam', :js => true do
+    enable_spam_filter
+    VCR.use_cassette('rakismet-ham', :match_requests_on => [:method]) do
+      post_spam_comment
+      wait_for_comment_in_state(:filtered_as_ham)
+    end
+    page.should have_content('viagra-test-123')
+
+    sign_in_as_admin
+    VCR.use_cassette('rakismet-train-as-spam') do
+      click_on 'Spam'
+      wait_for_comment_in_state(:marked_as_spam)
+    end
+    page.should_not have_content('viagra-test-123')
+  end
+
+  scenario 'Filtered as spam, mark as ham'
 end

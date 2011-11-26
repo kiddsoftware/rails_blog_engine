@@ -15,4 +15,9 @@
       &:hover, &:active { text-decoration: underline; }
     }
   }
+
+  >.update_comment_tools {
+    float: right;
+    margin: 0 0 10px 10px;
+  }
 }
