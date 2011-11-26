@@ -17,5 +17,5 @@
         = comment.author_byline
       said
       %a{:class => "comment-link", :href => "#comment-#{comment.id}"}= distance_of_time_in_words_to_now(comment.created_at)
-      later:
+      ago:
   %div.body~ markdown(comment.body)
