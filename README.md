@@ -26,7 +26,8 @@ writing the blog.  For example:
         can_read_blog
         
         # Test to see whether a user can manage the blog.  For example,
-        # if you identify administrators using an 'admin?' flag, 
+        # if you identify administrators using an 'admin?' flag, you
+        # might write 'if user.admin?' instead.
         if user
           can_manage_blog
         end
@@ -36,17 +37,45 @@ writing the blog.  For example:
 You should now be able to access your blog at `http://0.0.0.0:3000/blog`
 and start posting!
 
-## What if I'm not already using cancan?
+## What if I'm not already using `cancan`?
 
 You can still use `rails_blog_engine`!  First, install `rails_blog_engine`
-as described above, and generate a new `app/models/ability.rb` file:
+as described above, and then add the following lines to your `Gemfile`:
+
+    gem 'devise'  # Optional.
+    gem 'cancan'
+
+You don't have to use `devise`—you can use `rails_blog_engine` with the
+authentication framework of your choice.  If you are using Devise, however,
+you will now need to generate a user class:
+
+    rails generate devise:install
+    rails generate devise User
+
+To prevent random members of the public from signing up for a user account,
+edit `app/models/user.rb` and remove `:registerable`.  To create a new user,
+you must now run the following command from the Rails console:
+
+    User.create!(:email => "me@example.com", :password => "12345",
+                 :password_confirmation => "12345")
+
+(Alternatively, you keep `:registerable` on your `User` model, and add a
+new field `admin?` which you set from the console.)
+
+Once you have a working user model, you can generate a new
+`app/models/ability.rb` file:
 
     rails generate cancan:ability
 
-If your controllers don't define a `current_user` method, you may need to
+...and edit it as described above.
+
+### How can I make this work without a Devise `User` class?
+
+Basically, all `cancan` cares about is whether your controller defines a
+`current_ability` class.  So for example, if you don't use Devise, but the
+currently logged-in administrator is available as `current_admin`, you can
 edit `app/controllers/application_controller.rb` to override
-`current_ability`.  For example, if your logged in user is `current_admin`,
-you could use the following:
+`current_ability`:
 
     class ApplicationController < ActionController::Base
       # ...other stuff here...
@@ -55,8 +84,6 @@ you could use the following:
         @current_ability ||= ::Ability.new(current_admin)
       end
     end
-
-Now you can set up your blog as described above.
 
 ## Setting up titles and <head> tags
 

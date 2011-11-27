@@ -9,7 +9,7 @@ X   Comment author_id polymorphic
 X   Comment state index
 X   Collapse migrations into 1 giant migration
 / Quick refactoring pass
-  Integrate into Kidd Software site
+, Integrate into Kidd Software site
 
 Needed for 3rd-party use
 
