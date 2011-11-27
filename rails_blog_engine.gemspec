@@ -20,25 +20,25 @@ Gem::Specification.new do |s|
   s.add_dependency "rails", "~> 3.1.0"
 
   # Asset pipeline.  We use all the standard gems plus HAML.
-  s.add_dependency "jquery-rails", "~> 1.0.14"
-  s.add_dependency "sass-rails", "~> 3.1.0"
-  s.add_dependency "coffee-script", "~> 2.2.0"
-  s.add_dependency "haml", "~> 3.1.3"
+  s.add_dependency "jquery-rails", "~> 1.0"
+  s.add_dependency "sass-rails", "~> 3.1"
+  s.add_dependency "coffee-script", "~> 2.2"
+  s.add_dependency "haml", "~> 3.1"
 
   # Pagination.
   s.add_dependency "kaminari", "~> 0.12.4"
 
   # User accounts and authentication.
-  s.add_dependency "cancan", "~> 1.6.5"
+  s.add_dependency "cancan", "~> 1.6"
 
   # Spam filtering.
-  s.add_dependency "rakismet", "~> 1.1.2"
+  s.add_dependency "rakismet", "~> 1.1"
 
   # Other useful libraries.
-  s.add_dependency "simple_form", "~> 1.4.2"
+  s.add_dependency "simple_form", "~> 1.4"
   s.add_dependency "state_machine", "~> 1.0.0"
-  s.add_dependency "rdiscount", "~> 1.6.8"
-  s.add_dependency "sanitize", "~> 2.0.3"
+  s.add_dependency "rdiscount", "~> 1.6"
+  s.add_dependency "sanitize", "~> 2.0"
 
   # Development-only gems.
   s.add_development_dependency "sqlite3"
