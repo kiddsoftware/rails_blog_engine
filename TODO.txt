@@ -2,8 +2,8 @@ Before public release
 
 / Spam filtering for comments: rakismet
 /   Moderation by administrators
-  Secure comment fields using attr_accessible
-  Secure HTML in comments
+/ Secure comment fields using attr_accessible
+, Secure HTML in comments
   Table changes
     Comment author_id
     Comment state index

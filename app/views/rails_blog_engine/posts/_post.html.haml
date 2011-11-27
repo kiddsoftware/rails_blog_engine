@@ -10,7 +10,7 @@
     ago by
     = post.author_byline
 
-  %div.body~ markdown(post.body)
+  %div.body~ markdown(post.body, :trusted => true)
 
   - if current_page?(post_permalink_path(post))
     %h3.comments
