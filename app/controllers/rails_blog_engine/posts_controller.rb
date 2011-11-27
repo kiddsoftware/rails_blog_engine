@@ -1,5 +1,5 @@
 module RailsBlogEngine
-  class PostsController < ApplicationController
+  class PostsController < RailsBlogEngine::ApplicationController
     before_filter :load_recently_published, :only => :index
     before_filter :load_by_permalink, :only => :show
 

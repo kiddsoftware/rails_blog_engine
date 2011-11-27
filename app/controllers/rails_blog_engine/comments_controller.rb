@@ -1,5 +1,5 @@
 module RailsBlogEngine
-  class CommentsController < ApplicationController
+  class CommentsController < RailsBlogEngine::ApplicationController
     before_filter :load_post
 
     load_and_authorize_resource :class => "RailsBlogEngine::Comment"
