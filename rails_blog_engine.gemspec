@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.summary     = "Rails 3.1 drop-in blog engine"
   s.description = "A simple blog engine which can be dropped into an existing Rails application"
 
-  s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
+  s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.md", "BOOTSTRAP-LICENSE.txt", "PYGMENTS-LICENSE.txt", "RAILS-LICENSE.txt"]
   s.test_files = Dir["test/**/*"]
 
   # Rails 3.1.
