@@ -13,8 +13,10 @@ Gem::Specification.new do |s|
   s.summary     = "Rails 3.1 drop-in blog engine"
   s.description = "Rails 3.1 drop-in blog engine for existing Rails applications"
 
-  s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.md", "BOOTSTRAP-LICENSE.txt", "PYGMENTS-LICENSE.txt", "RAILS-LICENSE.txt"]
-  s.test_files = Dir["spec/**/*"]
+  s.files         = `git ls-files`.split("\n").sort
+  s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
+  s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
+  s.require_paths = ["lib"]
 
   # Rails 3.1.
   s.add_dependency "rails", "~> 3.1.0"
