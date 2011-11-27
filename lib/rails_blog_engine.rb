@@ -15,4 +15,6 @@ require "rails_blog_engine/ability"
 require "rails_blog_engine/filters"
 
 module RailsBlogEngine
+  class Railtie < ::Rails::Railtie
+  end
 end
