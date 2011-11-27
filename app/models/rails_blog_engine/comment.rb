@@ -12,6 +12,9 @@ module RailsBlogEngine
     scope(:visible,
           where(:state => ['unfiltered', 'filtered_as_ham', 'marked_as_ham']))
 
+    # These fields are directly settable by the user.
+    attr_accessible :author_byline, :author_email, :author_url, :body
+
     # Tell rakismet where to find the fields it needs for the spam filter.
     # We don't need to specify fields which already have the right name.
     #
