@@ -19,11 +19,20 @@ module RailsBlogEngine
 
     # Choose a configuration for the Sanitizer gem.
     def sanitize_config(trusted)
-      if trusted
-        Sanitize::Config::RELAXED
-      else
-        Sanitize::Config::BASIC
-      end
+      if trusted then CUSTOM_RELAXED_CONFIG else Sanitize::Config::BASIC end
     end
+
+    # Allow a few extra tags, mostly for use by our source-code highlighting
+    # filter.
+    def self.customize_sanitize_config(sanitize_config)
+      new_config = {}
+      sanitize_config.each {|k,v| new_config[k] = v.dup }
+      new_config[:elements] += ['div', 'span']
+      new_config[:attributes].merge!('div' => ['class'], 'span' => ['class'])
+      new_config
+    end
+
+    # The Sanitize configuration used for trusted posters.
+    CUSTOM_RELAXED_CONFIG = customize_sanitize_config(Sanitize::Config::RELAXED)
   end
 end

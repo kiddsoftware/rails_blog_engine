@@ -33,6 +33,14 @@ describe RailsBlogEngine::ApplicationHelper do
         helper.markdown("<a href='foo.html'>", :trusted => true).
           should_not match(/nofollow/)
       end
+
+      it "allows code highlighting" do
+        formatted = helper.markdown(<<EOD, :trusted => true)
+<div class='foo'><span class='bar'></span></div>
+EOD
+        formatted.should match(/foo/)
+        formatted.should match(/bar/)
+      end
     end
 
     context "for untrusted users" do
