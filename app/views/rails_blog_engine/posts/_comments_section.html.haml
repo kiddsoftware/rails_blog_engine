@@ -1,0 +1,11 @@
+%h3.comments
+  %a(name="comments") Comments
+
+= render @comments
+
+- if flash[:comment_notice]
+  %p.flash.notice
+    %a(name="comment-flash")= flash[:comment_notice]
+
+= render(:partial => 'rails_blog_engine/comments/form',
+         :locals => { :comment => @comment })

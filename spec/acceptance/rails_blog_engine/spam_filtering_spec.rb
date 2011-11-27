@@ -77,7 +77,7 @@ feature 'Spam filtering', %q{
       wait_for_comment_in_state(:filtered_as_ham)
     end
     page.should have_content('viagra-test-123')
-    page.should have_selector('.filtered_as_ham')
+    page.should have_selector('.ham')
 
     sign_in_as_admin
     VCR.use_cassette('rakismet-train-as-spam') do
@@ -85,7 +85,7 @@ feature 'Spam filtering', %q{
       wait_for_comment_in_state(:marked_as_spam)
     end
     page.should have_content('viagra-test-123')
-    page.should have_selector('.marked_as_spam')
+    page.should have_selector('.spam')
   end
 
   scenario 'Filtered as spam, mark as ham', :js => true do
@@ -98,13 +98,13 @@ feature 'Spam filtering', %q{
 
     sign_in_as_admin
     page.should have_content('Jane Doe')
-    page.should have_selector('.filtered_as_spam')
+    page.should have_selector('.spam')
 
     VCR.use_cassette('rakismet-train-as-ham') do
       click_on 'Not Spam'
       wait_for_comment_in_state(:marked_as_ham)
     end
     page.should have_content('Jane Doe')
-    page.should have_selector('.marked_as_ham')
+    page.should have_selector('.ham')
   end
 end

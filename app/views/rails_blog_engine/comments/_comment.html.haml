@@ -1,21 +1,10 @@
-.rails_blog_engine_comment.show{:class => comment.state}
-  - if can?(:update, comment)
-    .update_comment_tools
-      - if can?(:mark_as_ham, comment) && comment.can_mark_as_ham?
-        = link_to("Not Spam",
-                  mark_as_ham_post_comment_path(comment.post, comment),
-                  :method => :post, :class => "btn")
-      - if can?(:mark_as_spam, comment) && comment.can_mark_as_spam?
-        = link_to("Spam",
-                  mark_as_spam_post_comment_path(comment.post, comment),
-                  :method => :post, :class => "btn")
+.rails_blog_engine_comment.show{:class => comment_classes(comment)}
+  = render(:partial => 'rails_blog_engine/comments/tools',
+           :locals => { :comment => comment })
   %h4.byline
     %a{:name => "comment-#{comment.id}"}
-      - if comment.author_url && !comment.author_url.blank?
-        = link_to comment.author_byline, comment.author_url, :rel => "nofollow"
-      - else
-        = comment.author_byline
+      = comment_author_html(comment)
       said
       %a{:class => "comment-link", :href => "#comment-#{comment.id}"}= distance_of_time_in_words_to_now(comment.created_at)
       ago:
-  %div.body~ markdown(comment.body)
+  %div.body~ markdown(comment.body, :trusted? => comment.author_can_post?)

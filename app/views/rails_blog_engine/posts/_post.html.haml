@@ -1,30 +1,20 @@
 .rails_blog_engine_post
   %h1
     = link_to_unless_current(post.title, post_permalink_path(post))
-    - if can?(:update, RailsBlogEngine::Post)
-      = link_to("Edit", edit_post_path(post),
-                :class => "edit_post btn secondary")
+    = render(:partial => 'rails_blog_engine/posts/tools',
+             :locals => { :post => post })
   %p.byline
     Posted
     = distance_of_time_in_words_to_now(post.published_at)
     ago by
     = post.author_byline
 
-  %div.body~ markdown(post.body, :trusted => true)
+  %div.body~ markdown(post.body, :trusted? => true)
 
   - if current_page?(post_permalink_path(post))
-    %h3.comments
-      %a(name="comments") Comments
-    = render @comments
-    - if flash[:comment_notice]
-      %p.flash.notice
-        %a(name="comment-flash")= flash[:comment_notice]
-    = render(:partial => 'rails_blog_engine/comments/form',
-             :locals => { :comment => @comment })
+    = render(:partial => 'rails_blog_engine/posts/comments_section',
+             :locals => { :post => post, :comments => @comments,
+                          :comment => @comment })
   - else
     %p.links
-      - if post.comments.visible.empty?
-        = link_to("Comment", post_permalink_path(post) + "#comments")
-      - else
-        = link_to(pluralize(post.comments.visible.count, 'comment'),
-                  post_permalink_path(post) + "#comments")
+      = link_to_comments_section(post)

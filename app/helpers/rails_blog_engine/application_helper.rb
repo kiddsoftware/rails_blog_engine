@@ -1,10 +1,10 @@
 module RailsBlogEngine
   module ApplicationHelper
     # Process a block of text as Markdown, using our filters, and sanitize
-    # any usafe HTML.  You can pass <code>:trusted => true</code> to allow
+    # any usafe HTML.  You can pass <code>:trusted? => true</code> to allow
     # images and links without nofollow.
     def markdown(md_text, options={})
-      config = sanitize_config(options[:trusted] || false)
+      config = sanitize_config(options[:trusted?] || false)
       filtered = Filters.apply_all_to(md_text)
       Sanitize.clean(RDiscount.new(filtered, :smart).to_html, config).html_safe
     end
@@ -13,6 +13,20 @@ module RailsBlogEngine
     # fashion, so we do it manually.
     def feed_url
       root_url + "posts.atom"
+    end
+
+    # Get extra HTML classes for the specified comment.
+    def comment_classes(comment)
+      comment.state.sub(/\A(filtered|marked)_as_/, '')
+    end
+
+    # Generate HTML describing the author of a comment.
+    def comment_author_html(comment)
+      if comment.author_url && !comment.author_url.blank?
+        link_to comment.author_byline, comment.author_url, :rel => "nofollow"
+      else
+        comment.author_byline
+      end
     end
 
     protected

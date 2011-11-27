@@ -3,12 +3,12 @@ Before public release
 / Spam filtering for comments: rakismet
 /   Moderation by administrators
 / Secure comment fields using attr_accessible
-, Secure HTML in comments
-  Table changes
-    Comment author_id
-    Comment state index
-    Collapse migrations into 1 giant migration
-  Quick refactoring pass
+/ Secure HTML in comments
+X Table changes - Not going to collapse migrations, so there's no rush.
+X   Comment author_id polymorphic
+X   Comment state index
+X   Collapse migrations into 1 giant migration
+/ Quick refactoring pass
   Integrate into Kidd Software site
 
 Needed for 3rd-party use

@@ -25,17 +25,17 @@ describe RailsBlogEngine::ApplicationHelper do
 
     context "for trusted users" do
       it "allows images" do
-        helper.markdown("<img src='foo.png'>", :trusted => true).
+        helper.markdown("<img src='foo.png'>", :trusted? => true).
           should match(/<img/)
       end
 
       it "does not add nofollow to links" do
-        helper.markdown("<a href='foo.html'>", :trusted => true).
+        helper.markdown("<a href='foo.html'>", :trusted? => true).
           should_not match(/nofollow/)
       end
 
       it "allows code highlighting" do
-        formatted = helper.markdown(<<EOD, :trusted => true)
+        formatted = helper.markdown(<<EOD, :trusted? => true)
 <div class='foo'><span class='bar'></span></div>
 EOD
         formatted.should match(/foo/)

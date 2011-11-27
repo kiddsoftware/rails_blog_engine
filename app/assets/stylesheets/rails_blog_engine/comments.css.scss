@@ -4,7 +4,7 @@
   margin-bottom: 20px;
   max-width: 600px;
 
-  &.filtered_as_spam, &.marked_as_spam {
+  &.spam {
     background: lighten(#ffb6c1, 10%);
     border-color: lighten(#ffb6c1, 5%);
     color: darkgrey;
@@ -22,7 +22,7 @@
     }
   }
 
-  >.update_comment_tools {
+  >.comment-tools {
     float: right;
     margin: 0 0 10px 10px;
   }
