@@ -38,7 +38,7 @@ describe RailsBlogEngine::PostsController do
     end
 
     it "returns an ATOM feed header" do
-      puts response.body
+      #puts response.body
       response.body.should have_selector('feed')
       response.body.should have_selector('link[@rel="alternate"][@type="text/html"][@href="http://test.host/blog/"]')
       response.body.should have_selector('link[@rel="self"][@type="application/atom+xml"][@href="http://test.host/blog/posts.atom"]')
