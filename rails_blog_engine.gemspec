@@ -9,9 +9,9 @@ Gem::Specification.new do |s|
   s.version     = RailsBlogEngine::VERSION
   s.authors     = ["Eric Kidd"]
   s.email       = ["eric@kiddsoftware.com"]
-  s.homepage    = "http://github.com/emk/rails_blog_engine"
+  s.homepage    = "http://github.com/kiddsoftware/rails_blog_engine"
   s.summary     = "Rails 3.1 drop-in blog engine"
-  s.description = "A simple blog engine which can be dropped into an existing Rails application"
+  s.description = "Rails 3.1 drop-in blog engine for existing Rails applications"
 
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.md", "BOOTSTRAP-LICENSE.txt", "PYGMENTS-LICENSE.txt", "RAILS-LICENSE.txt"]
   s.test_files = Dir["test/**/*"]
