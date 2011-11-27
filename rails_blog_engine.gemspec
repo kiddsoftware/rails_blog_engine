@@ -14,7 +14,7 @@ Gem::Specification.new do |s|
   s.description = "Rails 3.1 drop-in blog engine for existing Rails applications"
 
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.md", "BOOTSTRAP-LICENSE.txt", "PYGMENTS-LICENSE.txt", "RAILS-LICENSE.txt"]
-  s.test_files = Dir["test/**/*"]
+  s.test_files = Dir["spec/**/*"]
 
   # Rails 3.1.
   s.add_dependency "rails", "~> 3.1.0"
