@@ -36,14 +36,16 @@ feature 'Posts', %q{
   end
 
   scenario 'Looking for posts on page 2' do
-    # Force our original post off the front page.
-    5.times { RailsBlogEngine::Post.make!(:published) }
+    # Force our original post off the front page (and off the recent posts
+    # list, too).
+    10.times { RailsBlogEngine::Post.make!(:published) }
 
     visit '/blog'
     page.should_not have_content("Test Post")
     click_on "Next"
+    click_on "Next"
     page.should have_content("Test Post")
-    current_path.should == '/blog/page/2'
+    current_path.should == '/blog/page/3'
   end
 
   scenario 'Adding a comment' do
