@@ -20,6 +20,10 @@ class RailsBlogEngine::InstallGenerator < Rails::Generators::Base
     copy_matching_files_from_gem('config/locales/rails_blog_engine.*.yml')
   end
 
+  def copy_sidebar
+    copy_matching_files_from_gem('app/views/layouts/rails_blog_engine/_sidebar.html.haml')
+  end
+
   def copy_stylesheets
     copy_matching_files_from_gem('app/assets/stylesheets/rails_blog_engine/_config.css.scss')
     copy_matching_files_from_gem('app/assets/stylesheets/rails_blog_engine/layout.css.scss')

@@ -57,6 +57,13 @@ EOD
             end
           end
         end
+        directory "views" do
+          directory "layouts" do
+            directory "rails_blog_engine" do
+              file "_sidebar.html.haml"
+            end
+          end
+        end
       end
       directory "config" do
         file "routes.rb" do
