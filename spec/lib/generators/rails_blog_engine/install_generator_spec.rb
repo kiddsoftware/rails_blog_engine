@@ -51,6 +51,10 @@ EOD
             file "application.css" do
               contains " *= require rails_blog_engine"
             end
+            directory "rails_blog_engine" do
+              file "_config.css.scss"
+              file "layout.css.scss"
+            end
           end
         end
       end
