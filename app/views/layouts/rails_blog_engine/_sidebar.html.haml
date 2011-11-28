@@ -1,1 +1,12 @@
-%p Sidebar goes here.
+%h3 About ACME, Inc.
+
+%p
+  Edit <code>_sidebar.html.haml</code> to describe your company, your bio
+  or your blog.
+
+%h3 Recent Posts
+
+%ul
+  - RailsBlogEngine::Post.recently_published.limit(10).each do |post|
+    %li
+      = link_to(post.title, post_permalink_path(post))
