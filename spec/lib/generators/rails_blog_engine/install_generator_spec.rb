@@ -54,6 +54,7 @@ EOD
             directory "rails_blog_engine" do
               file "_config.css.scss"
               file "layout.css.scss"
+              file "customizations.css.scss"
             end
           end
         end

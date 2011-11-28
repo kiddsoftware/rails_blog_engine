@@ -8,4 +8,5 @@
  *= require rails_blog_engine/layout
  *= require rails_blog_engine/posts
  *= require rails_blog_engine/comments
+ *= require rails_blog_engine/customizations
 */

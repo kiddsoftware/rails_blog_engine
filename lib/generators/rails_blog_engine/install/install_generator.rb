@@ -27,6 +27,7 @@ class RailsBlogEngine::InstallGenerator < Rails::Generators::Base
   def copy_stylesheets
     copy_matching_files_from_gem('app/assets/stylesheets/rails_blog_engine/_config.css.scss')
     copy_matching_files_from_gem('app/assets/stylesheets/rails_blog_engine/layout.css.scss')
+    copy_matching_files_from_gem('app/assets/stylesheets/rails_blog_engine/customizations.css.scss')
   end
 
   def register_javascripts
