@@ -1,22 +1,13 @@
 Before public release
 
-/ Spam filtering for comments: rakismet
-/   Moderation by administrators
-/ Secure comment fields using attr_accessible
-/ Secure HTML in comments
-X Table changes - Not going to collapse migrations, so there's no rush.
-X   Comment author_id polymorphic
-X   Comment state index
-X   Collapse migrations into 1 giant migration
-/ Quick refactoring pass
 , Integrate into Kidd Software site
 
 Needed for 3rd-party use
 
+  What should we do about route helpers in the application layout?
   Generators
     rails_blog_engine:templates
     rails_blog_engine:filter
-  Config class?  Either implement or remove initializer
 
 Needed for use as a product or company blog
 
@@ -25,7 +16,3 @@ Needed for use as a product or company blog
     Auto-save
     Publish / Unpublish button
 , SEO best practices
-
-Needed for 1.0
-
-  Recent articles list

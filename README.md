@@ -37,7 +37,34 @@ writing the blog.  For example:
 You should now be able to access your blog at `http://0.0.0.0:3000/blog`
 and start posting!
 
-## What if I'm not already using `cancan`?
+If you're not using CanCan, keep reading for setup instructions.
+
+## Philosophy and planned features
+
+`rails_blog_engine` should...
+
+* ...be installable in under 5 minutes.
+* ...be simple and easily hackable.
+* ...be opinionated.
+* ...be customized by overriding templates or forking the source, not by
+  adding configuration options.
+* ...be secure.
+* ...follow all white-hat SEO best practices.
+* ...have excellent unit test coverage, including tests for JavaScript.
+
+CoffeeScript, SCSS and other standard Rails 3.1 features are fair game, as
+are RSpec, HAML and CanCan.
+
+The following features are on my wishlist:
+
+* More generators to aid customization
+* Caching
+* A basic editor: Auto-save, with preview and a "Publish" button
+
+In other words, we want just enough features to make blogging pleasant, and
+nothing more.
+
+## What if I'm not already using CanCan?
 
 You can still use `rails_blog_engine`!  First, install `rails_blog_engine`
 as described above, and then add the following lines to your `Gemfile`:
@@ -71,7 +98,7 @@ Once you have a working user model, you can generate a new
 
 ### How can I make this work without a Devise `User` class?
 
-Basically, all `cancan` cares about is whether your controller defines a
+Basically, all CanCan cares about is whether your controller defines a
 `current_ability` class.  So for example, if you don't use Devise, but the
 currently logged-in administrator is available as `current_admin`, you can
 edit `app/controllers/application_controller.rb` to override
@@ -113,35 +140,6 @@ directory of your project, and specify the variables as follows:
 Then launch your application using the `foreman start` command.  This will
 require adding the `foreman` gem to your `Gemfile`, and creating a
 `Procfile`.
-
-## Philosophy and planned features
-
-`rails_blog_engine` should...
-
-* ...be installable in under 5 minutes.
-* ...be simple and easily hackable.
-* ...be opinionated.
-* ...be customized by overriding templates or forking the source, not by
-  adding configuration options.
-* ...be secure.
-* ...follow all white-hat SEO best practices.
-* ...have excellent unit test coverage, including tests for JavaScript.
-
-CoffeeScript, SCSS and other standard Rails 3.1 features are fair game, as
-are RSpec, HAML and CanCan.
-
-The following features are on my wishlist:
-
-* Pagination
-* More generators to aid customization
-* Caching
-* Optional comments, with spam filtering via a 3rd-party service
-  * Why?  Intelligent discussion adds value and may make it easier
-    for searchers to find your blog posts.
-* A basic editor: Auto-save, with preview and a "Publish" button
-
-In other words, we want just enough features to make blogging pleasant, and
-nothing more.
 
 ## Syntax highlighting
 
