@@ -33,6 +33,9 @@
     }
   }
 
+  // Make a container stretch to contain floating columns.
+  .clearfix { clear: both; }
+
   // Formatting for individual posts, either standalone or in a list.
   .rails_blog_engine_post {
     color: black;
