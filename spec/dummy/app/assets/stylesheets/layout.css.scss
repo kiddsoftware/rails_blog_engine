@@ -1,0 +1,6 @@
+// Simulate a 960-pixel grid system, so that we have a realistic way to
+// test out application layout.
+.content {
+  width: 960px;
+  margin: 0 auto 0 auto;
+}
