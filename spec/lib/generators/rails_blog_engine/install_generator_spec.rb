@@ -51,11 +51,6 @@ EOD
             file "application.css" do
               contains " *= require rails_blog_engine"
             end
-            directory "rails_blog_engine" do
-              file "_config.css.scss"
-              file "layout.css.scss"
-              file "customizations.css.scss"
-            end
           end
         end
         directory "views" do
@@ -83,6 +78,17 @@ EOD
           # a couple are copied over, and the rest should be OK.
           file "20110912153527_create_rails_blog_engine_posts.rb"
           file "20110913190319_add_fields_to_rails_blog_engine_post.rb"
+        end
+      end
+      directory "lib" do
+        directory "assets" do
+          directory "stylesheets" do
+            directory "rails_blog_engine" do
+              file "_config.css.scss"
+              file "layout.css.scss"
+              file "customizations.css.scss"
+            end
+          end
         end
       end
     }
