@@ -7,4 +7,5 @@
       said
       %a{:class => "comment-link", :href => "#comment-#{comment.id}"}= distance_of_time_in_words_to_now(comment.created_at)
       ago:
-  %div.body~ markdown(comment.body, :trusted? => comment.author_can_post?)
+  %div.rails_blog_engine_body
+    ~ markdown(comment.body, :trusted? => comment.author_can_post?)

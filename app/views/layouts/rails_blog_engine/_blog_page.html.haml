@@ -1,0 +1,10 @@
+- content_for :head do
+  = auto_discovery_link_tag :atom, feed_url
+
+.rails_blog_engine
+  .rails_blog_engine_content
+    .rails_blog_engine_column
+      = content_for(:rails_blog_engine_content)
+  .rails_blog_engine_sidebar
+    .rails_blog_engine_column.rails_blog_engine_body
+      = render :partial => 'layouts/rails_blog_engine/sidebar'

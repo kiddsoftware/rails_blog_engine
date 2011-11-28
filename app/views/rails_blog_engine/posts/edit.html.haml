@@ -1,5 +1,6 @@
 - content_for :title do
   Edit Post
-%h1 Edit Post
 
-= render :partial => 'form', :locals => { :post => @post }
+= blog_page do
+  %h1 Edit Post
+  = render :partial => 'form', :locals => { :post => @post }

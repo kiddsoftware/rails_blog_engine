@@ -1,5 +1,12 @@
 module RailsBlogEngine
   module ApplicationHelper
+    # Wrap a block of content up as a blog page.  This is basically a
+    # nested layout with some wrapper classes and a sidebar.
+    def blog_page(&block)
+      content_for(:rails_blog_engine_content, &block)
+      render :partial => 'layouts/rails_blog_engine/blog_page'
+    end
+
     # Process a block of text as Markdown, using our filters, and sanitize
     # any usafe HTML.  You can pass <code>:trusted? => true</code> to allow
     # images and links without nofollow.

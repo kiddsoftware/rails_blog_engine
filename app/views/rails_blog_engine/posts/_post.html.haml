@@ -9,7 +9,7 @@
     ago by
     = post.author_byline
 
-  %div.body~ markdown(post.body, :trusted? => true)
+  %div.rails_blog_engine_body~ markdown(post.body, :trusted? => true)
 
   - if current_page?(post_permalink_path(post))
     = render(:partial => 'rails_blog_engine/posts/comments_section',
