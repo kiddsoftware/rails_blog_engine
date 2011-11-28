@@ -1,0 +1,33 @@
+@import "rails_blog_engine/config";
+
+// The layout for our blog pages.
+.rails_blog_engine {
+  // Customize this element appropriately.  For example, if you want the
+  // blog to be 960 pixels wide and centered on the page, you could use:
+  //width: 960px;
+  //margin: 0 auto 0 auto;
+
+  // Set up a two-column model with 2/3rds of the space for the blog posts,
+  // and 1/3rd for the sidebar.  These defaults are designed to fit into a
+  // 960-pixel grid with 940 pixels of content, and to look reasonable
+  // elsewhere.  Tweak as needed.
+  .rails_blog_engine_content, .rails_blog_engine_sidebar { float: left; }
+  .rails_blog_engine_content { width: 66.67%; }
+  .rails_blog_engine_sidebar { width: 33.33%; }
+
+  // We put the column gutters in a separate element so that we can use
+  // percentage widths above without messing up the box model.  If your grid
+  // doesn't leave 10 pixels of padding around each column, repalace this
+  // with something more appropriate.
+  .rails_blog_engine_column { padding: 0 10px; }
+
+  // Make a container stretch to contain floating columns.
+  .clearfix { clear: both; }
+
+  // Formatting for post bodies, comment bodies, and sidebar content.  We
+  // eliminate the top margin, and use the bottom margin to space blocks.
+  blockquote, dl, embed, h1, h2, h3, h4, h5, h6, hr, object, ol,
+  p, pre, table, ul, aside, figure, header, hgroup, section {
+    margin: 0 0 $blank_line_height 0;
+  }
+}

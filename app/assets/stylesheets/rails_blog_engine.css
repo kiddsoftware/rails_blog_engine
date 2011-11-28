@@ -1,6 +1,11 @@
 /*
  * Include the CSS files required by rails_blog_engine.
  *
- *= require_self
- *= require_tree ./rails_blog_engine
+ *= require rails_blog_engine/ui/bootstrap_extracts
+ *= require rails_blog_engine/ui/simple_form
+ *= require rails_blog_engine/filters/code
+ *
+ *= require rails_blog_engine/layout
+ *= require rails_blog_engine/posts
+ *= require rails_blog_engine/comments
 */

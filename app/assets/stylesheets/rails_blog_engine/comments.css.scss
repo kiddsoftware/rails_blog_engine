@@ -1,28 +1,33 @@
-.rails_blog_engine_comment.show {
-  border: 1px solid lightgrey;
-  padding: 10px 10px 0 10px;
-  margin-bottom: 20px;
+@import "rails_blog_engine/config";
 
-  &.spam {
-    background: lighten(#ffb6c1, 10%);
-    border-color: lighten(#ffb6c1, 5%);
-    color: darkgrey;
-  }
+.rails_blog_engine {
 
-  >.byline {
-    margin-top: 0;
-    margin-bottom: 10px;
-    font-weight: normal;
+  .rails_blog_engine_comment.show {
+    border: 1px solid lightgrey;
+    padding: $box_padding $box_padding
+             ($box_padding - $blank_line_height) $box_padding;
+    margin-bottom: $blank_line_height*2;
 
-    a.comment-link {
-      color: inherit;
-      &:link, &:visited { text-decoration: none; }
-      &:hover, &:active { text-decoration: underline; }
+    &.spam {
+      background: lighten(#ffb6c1, 10%);
+      border-color: lighten(#ffb6c1, 5%);
+      color: darkgrey;
     }
-  }
 
-  >.comment-tools {
-    float: right;
-    margin: 0 0 10px 10px;
+    >.byline {
+      margin-top: 0;
+      font-weight: normal;
+
+      a.comment-link {
+        color: inherit;
+        &:link, &:visited { text-decoration: none; }
+        &:hover, &:active { text-decoration: underline; }
+      }
+    }
+
+    >.comment-tools {
+      float: right;
+      margin: 0 0 $blank_line_height $blank_line_height;
+    }
   }
 }
