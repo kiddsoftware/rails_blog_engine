@@ -13,7 +13,8 @@
 
   // We put the column gutters in a separate element so that we can use
   // percentage widths above without messing up the box model.  If your grid
-  // doesn't leave 10 pixels of padding around each column, delete this.
+  // doesn't leave 10 pixels of padding around each column, repalace this
+  // with something more appropriate.
   .rails_blog_engine_column { padding: 0 10px; }
 
   // Formatting for post bodies, comment bodies, and sidebar content.  We
@@ -38,8 +39,8 @@
     margin-bottom: 20px;
 
     // Clear top margins. We'll use the bottom margin for spacing.
-    >h1, >p.byline, >.body {
-      margin-top: 0;
+    >h1, >p {
+      margin: 0 0 10px 0;
     }
 
     >h1 {
@@ -50,7 +51,6 @@
     }
 
     >p.byline {
-      margin-bottom: 10px;
       color: grey;
     }
 
