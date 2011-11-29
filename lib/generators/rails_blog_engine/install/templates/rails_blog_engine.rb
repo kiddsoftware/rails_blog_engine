@@ -1,5 +1,8 @@
 # Configure RailsBlogEngine here.
 
+# Which application layout should we use to render the blog?
+#Rails.application.config.rails_blog_engine.layout = 'application'
+
 # If you want to activate the built-in spam filter, visit http://akismet.com/
 # and sign up for an API key.
 Rails.application.config.rakismet.key = ENV['RAKISMET_KEY']

@@ -1,13 +1,18 @@
 module RailsBlogEngine
   class ApplicationController < ActionController::Base
-    # Use our parent application's layout, so that we "auto-blend" into
-    # the existing look-and-feel of the site.
-    layout 'application'
+    layout :choose_layout
 
     helper_method :post_permalink_url
     helper_method :post_permalink_path
 
     protected
+
+    # We normally use one of our parent application's layouts, so that we
+    # "auto-blend" into the existing look-and-feel of the site.  The
+    # specific layout is specified by our initializer.
+    def choose_layout
+      Rails.configuration.rails_blog_engine.layout
+    end
 
     def post_permalink_local_path(post)
       date = post.published_at.utc
