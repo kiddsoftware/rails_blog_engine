@@ -6,7 +6,7 @@ RailsBlogEngine::Engine.routes.draw do
   get 'page/:page' => 'posts#index', :constraints => { :page => /\d+/ }
 
   # Home page.
-  root :to => 'posts#index'
+  root :to => 'posts#index', :as => :blog
 
   # Public article pages.
   get(':year/:month/:day/:permalink' => 'posts#show',

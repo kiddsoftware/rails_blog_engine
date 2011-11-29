@@ -19,7 +19,7 @@ module RailsBlogEngine
     # The URL of our Atom feed. Rails refuses to generate this in any simple
     # fashion, so we do it manually.
     def feed_url
-      root_url + "posts.atom"
+      blog_url + "posts.atom"
     end
 
     # Get extra HTML classes for the specified comment.

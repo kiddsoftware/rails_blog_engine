@@ -16,11 +16,11 @@ module RailsBlogEngine
     end
 
     def post_permalink_path(post)
-      root_path + post_permalink_local_path(post)
+      blog_path + post_permalink_local_path(post)
     end
 
     def post_permalink_url(post)
-      root_url + post_permalink_local_path(post)
+      blog_url + post_permalink_local_path(post)
     end
   end
 end

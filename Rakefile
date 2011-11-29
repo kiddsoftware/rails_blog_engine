@@ -43,7 +43,7 @@ task :routes => 'app:environment' do
 
   Rails.application.reload_routes!
   all_routes = RailsBlogEngine::Engine.routes.routes
-  prefix = RailsBlogEngine::Engine.routes.url_helpers.root_path.sub(/\/\z/, '')
+  prefix = RailsBlogEngine::Engine.routes.url_helpers.blog_path.sub(/\/\z/, '')
 
   if ENV['CONTROLLER']
     all_routes = all_routes.select{ |route| route.defaults[:controller] == ENV['CONTROLLER'] }
