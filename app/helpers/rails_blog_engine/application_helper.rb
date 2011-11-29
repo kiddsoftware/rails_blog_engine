@@ -36,6 +36,28 @@ module RailsBlogEngine
       end
     end
 
+    # Returns an object providing the standard application helpers for our
+    # containing application.  This is necessary when we are rendered using
+    # an application-wide layout from inside an engine-specific controller,
+    # which normally makes it impossible to access the application's helper
+    # methods.
+    def app_helpers
+      @app_helpers ||= Class.new do
+        include Rails.application.routes.url_helpers
+        include ::ApplicationHelper
+      end.new
+    end
+
+    # Intercept calls to our containing application's helpers, and explain
+    # to our caller how to make them work.
+    def method_missing(name, *args, &block)
+      if app_helpers.respond_to?(name)
+        raise "Please call #{name} as app_helpers.#{name}"
+      else
+        super(name, *args, &block)
+      end
+    end
+
     protected
 
     # Choose a configuration for the Sanitizer gem.
