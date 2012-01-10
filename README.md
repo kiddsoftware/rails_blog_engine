@@ -2,9 +2,8 @@
 
 **Pre-beta release.  Public APIs may change.**
 
-Add a blog to any Rails 3.1 site using `rails_blog_engine`.  If you're
-already using `cancan` for authorization, then add the following line to
-your `Gemfile`:
+Add a blog to any Rails 3.1 site using `rails_blog_engine`.  First, add the
+following line to your `Gemfile`:
 
     gem 'rails_blog_engine'
 
@@ -14,30 +13,25 @@ your `Gemfile`:
     rails generate rails_blog_engine:install
     rake db:migrate
 
-Then edit your `app/models/ability.rb` file to authorize reading and
-writing the blog.  For example:
+Check the configuration in the newly-generated
+`config/initializers/rails_blog_engine.rb` and tweak as necessary.
 
-    class Ability
-      include CanCan::Ability
-      include RailsBlogEngine::Ability
-      
-      def initialize(user)
-        # Everybody can read the blog, even if they're not logged in.
-        can_read_blog
-        
-        # Test to see whether a user can manage the blog.  For example,
-        # if you identify administrators using an 'admin?' flag, you
-        # might write 'if user.admin?' instead.
-        if user
-          can_manage_blog
-        end
+If you're using Devise, or another framework which defines `current_user`
+on `ActionController::Base`, then all you need to do is add a `blog_admin?`
+method to your user model:
+
+    class User
+      # ...other stuff here...
+    
+      # Return true if the user is allowed to post to the blog,
+      # moderate comments, etc.
+      def blog_admin?
+        # Your code here.
       end
     end
 
 You should now be able to access your blog at `http://0.0.0.0:3000/blog`
 and start posting!
-
-If you're not using CanCan, keep reading for setup instructions.
 
 ## Philosophy and planned features
 
@@ -64,53 +58,18 @@ The following features are on my wishlist:
 In other words, we want just enough features to make blogging pleasant, and
 nothing more.
 
-## What if I'm not already using CanCan?
+## What if I'm don't have `ActionController::Base#current_user`?
 
-You can still use `rails_blog_engine`!  First, install `rails_blog_engine`
-as described above, and then add the following lines to your `Gemfile`:
+Add something like the following to
+`config/initializers/rails_blog_engine.rb`:
 
-    gem 'devise'  # Optional.
-    gem 'cancan'
-
-You don't have to use `devise`—you can use `rails_blog_engine` with the
-authentication framework of your choice.  If you are using Devise, however,
-you will now need to generate a user class:
-
-    rails generate devise:install
-    rails generate devise User
-
-To prevent random members of the public from signing up for a user account,
-edit `app/models/user.rb` and remove `:registerable`.  To create a new user,
-you must now run the following command from the Rails console:
-
-    User.create!(:email => "me@example.com", :password => "12345",
-                 :password_confirmation => "12345")
-
-(Alternatively, you keep `:registerable` on your `User` model, and add a
-new field `admin?` which you set from the console.)
-
-Once you have a working user model, you can generate a new
-`app/models/ability.rb` file:
-
-    rails generate cancan:ability
-
-...and edit it as described above.
-
-### How can I make this work without a Devise `User` class?
-
-Basically, all CanCan cares about is whether your controller defines a
-`current_ability` class.  So for example, if you don't use Devise, but the
-currently logged-in administrator is available as `current_admin`, you can
-edit `app/controllers/application_controller.rb` to override
-`current_ability`:
-
-    class ApplicationController < ActionController::Base
-      # ...other stuff here...
-      
-      def current_ability
-        @current_ability ||= ::Ability.new(current_admin)
+    class RailsBlogEngine::ApplicationController
+      def current_user
+        # Check session, etc., here.
       end
     end
+
+Please open an issue if you have any questions or problems.
 
 ## Setting up titles and <head> tags
 

@@ -6,4 +6,10 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
+
+  # Is the current user a blog administrator?  Always true for this example
+  # application.
+  def blog_admin?
+    true
+  end
 end

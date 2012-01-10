@@ -7,6 +7,17 @@ module RailsBlogEngine
 
     protected
 
+    # Construct a CanCan Ability object to control access to the blog.
+    def current_ability
+      method = Rails.configuration.rails_blog_engine.current_user_method
+      if respond_to?(method)
+        user = send(method)
+      else
+        raise "You must define #{method} on RailsBlogEngine::ApplicationController, as described in README.md"
+      end
+      RailsBlogEngine::Ability.new(user)
+    end
+
     # We normally use one of our parent application's layouts, so that we
     # "auto-blend" into the existing look-and-feel of the site.  The
     # specific layout is specified by our initializer.

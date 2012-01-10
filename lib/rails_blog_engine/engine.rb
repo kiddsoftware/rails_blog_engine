@@ -5,6 +5,8 @@ module RailsBlogEngine
     # Define some initialization parameters and their default values.
     config.rails_blog_engine = ActiveSupport::OrderedOptions.new
     config.rails_blog_engine.layout = 'application'
+    config.rails_blog_engine.current_user_method = :current_user
+    config.rails_blog_engine.blog_admin_method = :blog_admin?
 
     config.to_prepare do
       ::ApplicationHelper.class_eval do

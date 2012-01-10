@@ -11,7 +11,6 @@ require "kaminari"
 require "rakismet"
 
 require "rails_blog_engine/engine"
-require "rails_blog_engine/ability"
 require "rails_blog_engine/filters"
 
 module RailsBlogEngine
